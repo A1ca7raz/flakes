@@ -1,1 +1,1 @@
-![flamework](https://socialify.git.ci/A1ca7raz/flamework/image?description=1&font=KoHo&language=1&logo=https%3A%2F%2Fraw.githubusercontent.com%2FA1ca7raz%2Fflamework%2Fmain%2Fassets%2Fflamework.svg&owner=1&pattern=Plus&theme=Auto)
+![flakes](https://socialify.git.ci/A1ca7raz/flakes/image?description=1&font=KoHo&logo=https%3A%2F%2Fraw.githubusercontent.com%2FNixOS%2Fnixos-artwork%2Fmaster%2Flogo%2Fnix-snowflake-colours.svg&name=1&owner=1&theme=Auto)
