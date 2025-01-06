@@ -1,5 +1,5 @@
 {
-  description = "Flamework 3";
+  description = "A1ca7raz's NixOS Configuration";
 
   nixConfig = {
     # https://github.com/A1ca7raz/nurpkgs/blob/main/config.nix
