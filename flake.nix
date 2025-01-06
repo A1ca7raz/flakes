@@ -58,8 +58,6 @@
       inherit inputs;
       specialArgs = { inherit lib; };
     } {
-
-      debug = true;
       systems = [
         "x86_64-linux"
       ];
