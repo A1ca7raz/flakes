@@ -121,6 +121,21 @@
         "type": "github"
       }
     },
+    "flamework": {
+      "locked": {
+        "lastModified": 1736177995,
+        "narHash": "sha256-EiDUPWhWWvz5eUUX6BDO5SHYQzIOxB4+Rb8mB0caS2w=",
+        "owner": "A1ca7raz",
+        "repo": "flamework",
+        "rev": "eba6c6c44eb8e686c585c37af63563df9a32c586",
+        "type": "github"
+      },
+      "original": {
+        "owner": "A1ca7raz",
+        "repo": "flamework",
+        "type": "github"
+      }
+    },
     "hercules-ci-effects": {
       "inputs": {
         "flake-parts": [
@@ -457,6 +472,7 @@
           "nur",
           "flake-utils"
         ],
+        "flamework": "flamework",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "lanzaboote": [

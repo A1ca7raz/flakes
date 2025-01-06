@@ -16,6 +16,7 @@
   inputs = {
     # Use inputs from my NUR flake
     nur.url = "github:A1ca7raz/nurpkgs";
+    flamework.url = "github:A1ca7raz/flamework";
     nixpkgs.follows = "nur/nixpkgs";
     flake-parts.follows = "nur/flake-parts";
     flake-utils.follows = "nur/flake-utils";
@@ -49,9 +50,9 @@
   };
 
   outputs =
-    inputs@{ self, nixpkgs, flake-parts, ... }:
+    inputs@{ self, nixpkgs, flake-parts, flamework, ... }:
     let
-      lib = import ./flake-modules/lib nixpkgs.lib;
+      lib = flamework.lib nixpkgs.lib;
     in
     flake-parts.lib.mkFlake {
       inherit inputs;
@@ -63,10 +64,10 @@
         "x86_64-linux"
       ];
 
-      imports = [
-        ./flake-modules/profiles
-        ./flake-modules/packages
-        ./flake-modules/modules
+      imports = with flamework.flakeModules; [
+        profiles
+        modules
+        packages
       ];
 
       flamework = {
