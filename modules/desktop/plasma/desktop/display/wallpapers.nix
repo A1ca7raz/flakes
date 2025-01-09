@@ -16,5 +16,5 @@ with lib; let
   ];
 in {
   utils.kconfig.files.appletsrc.items = (usePotd (selectMonitor 0 1))
-    ++ (useImage (selectMonitor 1 1));
+    ++ (usePotd (selectMonitor 1 1));
 }
