@@ -20,6 +20,4 @@ in {
       ++ mkExist /etc/ssh/CA_User_key.pub
     ;
   };
-
-  environment.overlay.tempStorePath = "/nix/persist/overlay_store";
 }
