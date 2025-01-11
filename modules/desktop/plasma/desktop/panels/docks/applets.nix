@@ -57,5 +57,6 @@ in {
       "applications:org.telegram.desktop.desktop"
       "applications:systemsettings.desktop"
     ];
+    confG.showOnlyCurrentScreen = "true";
   };
 }
