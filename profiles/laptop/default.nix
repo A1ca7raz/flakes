@@ -28,9 +28,10 @@
     hardware.xbox
 
     (programs.desktop.exclude [
-      "networking.cloudflare-warp"
       "development.jetbrains"
       "messaging.matrix"
+      "editors.logseq"
+      "graphics.gimp"
     ])
 
     (services.client.exclude [

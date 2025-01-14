@@ -12,7 +12,7 @@
       # step-cli
       flameworkPackages.desktop-toolkit
 
-      deskflow
+      # deskflow
     ];
   };
 
