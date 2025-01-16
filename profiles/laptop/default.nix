@@ -31,7 +31,7 @@
       "development.jetbrains"
       "messaging.matrix"
       "editors.logseq"
-      "graphics.gimp"
+      "editors.affine"
     ])
 
     (services.client.exclude [
