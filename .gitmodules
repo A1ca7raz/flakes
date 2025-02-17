@@ -1,3 +1,0 @@
-[submodule "secrets"]
-	path = secrets
-	url = gh:A1ca7raz/nixos-secrets
