@@ -4,7 +4,7 @@
       (c "easyeffects")
     ];
 
-  homeModule = { pkgs, ... }: {
-    home.packages = [ pkgs.easyeffects ];
+  homeModule = { ... }: {
+    services.easyeffects.enable = true;
   };
 }

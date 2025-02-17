@@ -8,7 +8,6 @@
     in {
       xdg.configFile = {
         autostart_birdtray = mkLink "birdtray";
-        autostart_easyeffects = mkLink "easyeffects";
         autostart_keepassxc = mkLink "keepassxc";
         autostart_steam = mkLink "steam";
         autostart_yakuake = mkLink "yakuake";
