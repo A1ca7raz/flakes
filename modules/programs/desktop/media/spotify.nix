@@ -1,27 +1,7 @@
 {
-  homeModule = { pkgs, inputs, ... }:
-    let
-      spicetify-nix = inputs.spicetify-nix;
-      spicePkgs = spicetify-nix.packages.x86_64-linux.default;
-    in {
-      imports = [ spicetify-nix.homeManagerModule ];
-
-      programs.spicetify = with spicePkgs; {
-        enable = true;
-        theme = themes.Dribbblish;
-        colorScheme = "nord-light";
-
-        enabledExtensions = with extensions; [
-          volumePercentage
-          shuffle
-          skipOrPlayLikedSongs
-        ];
-        enabledCustomApps = with apps; [
-          lyrics-plus
-        ];
-      };
-
+  homeModule = { pkgs, inputs, ... }: {
       home.packages = with pkgs; [
+        spicetify
         sptlrx                      # Command-line Lyrics
         playerctl
       ];
