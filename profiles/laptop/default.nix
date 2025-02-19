@@ -32,6 +32,7 @@
       "messaging.matrix"
       "editors.logseq"
       "editors.affine"
+      "graphics.krita"
     ])
 
     (services.client.exclude [
