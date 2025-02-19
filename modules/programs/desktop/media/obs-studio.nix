@@ -8,7 +8,7 @@
         advanced-scene-switcher
         obs-teleport
         obs-source-clone
-        obs-replay-source
+        # obs-replay-source
         obs-composite-blur
         obs-source-switcher
         obs-gradient-source
