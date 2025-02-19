@@ -18,7 +18,7 @@ let
         alignment = 1;
         floating = 1;
         panelLengthMode = 1;
-        panelOpacity = 1;
+        panelOpacity = 2;
         panelVisibility = 1;
       };
 
