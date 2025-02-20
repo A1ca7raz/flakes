@@ -14,6 +14,7 @@ with pkgs; let
     ];
   };
 in {
+  lib.packages.mpv = mpvPackage;
   home.packages = [ mpvPackage ];
   xdg.configFile.mpvConf = {
     target = "mpv/mpv.conf";
