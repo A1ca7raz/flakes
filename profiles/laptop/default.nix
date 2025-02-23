@@ -35,9 +35,7 @@
       "graphics.krita"
     ])
 
-    (services.client.exclude [
-      "sing-box"
-    ])
+    services.desktop
 
     system.kernel.xanmod
     system.security.secureboot
