@@ -24,17 +24,20 @@ in {
       scale = "ewa_hanning";
       cscale = "bilinear";
       dscale = "ewa_hanning";
-      video-sync = "display-resample";
-      interpolation = true;
+      # video-sync = "display-resample";
+      # interpolation = true;
       save-position-on-quit = true;
-      hwdec = "auto-copy";
+      hwdec = "auto";
       hwdec-codecs = "all";
+      vo = "gpu-next";
       volume-max = 150;
+
+      wayland-disable-vsync = true;
 
       # Network stream cache
       demuxer-max-bytes = "400MiB";       # forward cache
       demuxer-max-back-bytes = "100MiB";  # At least 100MiB memory space for backward cache
-      demuxer-donate-buffer = "yes";      # Allow backward cache 'borrow' space from forward cache (for live stream, total 500MiB available for backward cache)
+      demuxer-donate-buffer = true;      # Allow backward cache 'borrow' space from forward cache (for live stream, total 500MiB available for backward cache)
       demuxer-hysteresis-secs = 10;       # extra cache when 500MiB run out
     };
 
