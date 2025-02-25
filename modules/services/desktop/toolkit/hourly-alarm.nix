@@ -16,7 +16,7 @@ in {
   systemd.user.timers.hourly-alarm = {
     Unit.Description = "Hourly Alarm Timer";
     Timer.OnCalendar = "*:00";
-    Install.WantedBy = [ "timers.target" ];
+    # Install.WantedBy = [ "timers.target" ];
   };
 
   xdg.desktopEntries.hourly-alarm = {
