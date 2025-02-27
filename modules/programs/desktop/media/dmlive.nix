@@ -40,6 +40,13 @@
       }))
     ];
 
-    xdg.mimeApps.associations.added."x-scheme-handler/dmlive" = "dmlive-mime.desktop";
+    xdg.configFile.dmlive = {
+      target = "dmlive/config.toml";
+      text = ''
+        cookies_from_browser = "chromium"
+        font_scale = 0.7
+        danmaku_speed = 20000
+      '';
+    };
   };
 }
