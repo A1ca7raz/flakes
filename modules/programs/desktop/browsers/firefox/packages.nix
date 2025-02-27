@@ -5,7 +5,7 @@
   programs.firefox.enable = true;
   programs.firefox.package = with pkgs; firefox.override {
     nativeMessagingHosts = [
-      plasma-browser-integration
+      kdePackages.plasma-browser-integration
     ];
     cfg.smartcardSupport = true;
   };

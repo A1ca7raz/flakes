@@ -1,4 +1,4 @@
 { home, pkgs, ... }:
 {
-  home.packages = [ pkgs.kompare ];
+  home.packages = [ pkgs.kdePackages.kompare ];
 }
