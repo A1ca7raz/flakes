@@ -15,7 +15,7 @@
         })
       ];
     }))
-    plasma-panel-colorizer-nightly
+    plasma-panel-colorizer
     plasma-panel-spacer-extended
     kara
     plasmusic-toolbar
