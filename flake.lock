@@ -123,11 +123,11 @@
     },
     "flamework": {
       "locked": {
-        "lastModified": 1736178252,
-        "narHash": "sha256-vDiCJ8q5CRYds3u6xOdOZ/nbY6+4WTdy344KiTM1hS0=",
+        "lastModified": 1740676263,
+        "narHash": "sha256-L5Tz4D65ftGzjpt7AW8DFcY+jDWVV3rmrHpYBNhpyQ0=",
         "owner": "A1ca7raz",
         "repo": "flamework",
-        "rev": "768236b7da0f2627519722cc1fe4d9e1040ce064",
+        "rev": "9feb4c163b4068d303368f9ee293ff6d84e075e0",
         "type": "github"
       },
       "original": {
@@ -369,6 +369,21 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "locked": {
+        "lastModified": 1740685044,
+        "narHash": "sha256-W40dTBCgfGJQl6UJ/8VtOE9kMf2Fl7+w+FAsmdoXY+Q=",
+        "owner": "A1ca7raz",
+        "repo": "nix-secrets",
+        "rev": "32c792deb916e195084bf92aeea7f6e0b445362b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "A1ca7raz",
+        "repo": "nix-secrets",
+        "type": "github"
+      }
+    },
     "nixpak": {
       "inputs": {
         "flake-parts": [
@@ -580,6 +595,7 @@
           "nur",
           "nix-index-database"
         ],
+        "nix-secrets": "nix-secrets",
         "nixpkgs": [
           "nur",
           "nixpkgs"

@@ -17,6 +17,7 @@
     # Use inputs from my NUR flake
     nur.url = "github:A1ca7raz/nurpkgs";
     flamework.url = "github:A1ca7raz/flamework";
+    nix-secrets.url = "github:A1ca7raz/nix-secrets";
     nixpkgs.follows = "nur/nixpkgs";
     flake-parts.follows = "nur/flake-parts";
     flake-utils.follows = "nur/flake-utils";
@@ -73,6 +74,9 @@
           presetsPath = ./profiles/__templates;
           constantsPath = ./constant;
           enableColmenaHive = true;
+          extraSpecialArgs = {
+            inherit (inputs.nix-secrets) variables;
+          };
         };
         packages.pkgsPath = ./pkgs;
         modules.path = ./modules;
