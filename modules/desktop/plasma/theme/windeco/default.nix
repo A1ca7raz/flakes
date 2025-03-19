@@ -42,20 +42,7 @@
 
   homeModule = { pkgs, ... }: {
     home.packages = with pkgs; [
-      (kdePackages.sierra-breeze-enhanced.overrideAttrs (p: {
-        src = pkgs.fetchFromGitHub {
-          owner = "kupiqu";
-          repo = "SierraBreezeEnhanced";
-          rev = "192ab107b228c832efb417131fb2dcf2b8d48f75";
-          hash = "sha256-fXUGOKO7JoEWoAaGzFPoAVpu1/Vp73Elks/pjfOlGKw=";
-        };
-        patches = [
-          (pkgs.fetchpatch {
-            url = "https://github.com/kupiqu/SierraBreezeEnhanced/pull/144.patch";
-            hash = "sha256-xPp/yOawFyh4X0sWhrC7vGkQwE/On3wPxcThzqZT93k=";
-          })
-        ];
-      }))
+      sierra-breeze-enhanced-git
     ];
   };
 }

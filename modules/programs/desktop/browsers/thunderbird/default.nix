@@ -16,11 +16,7 @@
   homeModule = { pkgs, ... }: {
     home.packages = with pkgs; [
       birdtray
-      (thunderbird.override {
-        cfg = {
-          smartcardSupport = true;
-        };
-      })
+      thunderbird
     ];
 
     xdg.mimeApps = {
