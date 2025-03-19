@@ -1,52 +1,13 @@
 {
   description = "A1ca7raz's NixOS Configuration";
 
-  nixConfig = {
-    # https://github.com/A1ca7raz/nurpkgs/blob/main/config.nix
-    extra-substituters = [
-      "https://cache.garnix.io"
-      "https://a1ca7raz-nur.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
-      "a1ca7raz-nur.cachix.org-1:twTlSh62806B8lfG0QQzge4l5srn9Z8/xxyAFauOZnQ="
-    ];
-  };
-
   inputs = {
-    # Use inputs from my NUR flake
-    nur.url = "github:A1ca7raz/nurpkgs";
+    pkgs.url = "github:A1ca7raz/nurpkgs";
+    modules.url = "github:A1ca7raz/nur-modules";
     flamework.url = "github:A1ca7raz/flamework";
-    nix-secrets.url = "github:A1ca7raz/nix-secrets";
-    nixpkgs.follows = "nur/nixpkgs";
-    flake-parts.follows = "nur/flake-parts";
-    flake-utils.follows = "nur/flake-utils";
-    flake-compat.follows = "nur/flake-compat";
-
-    # NixosModule Flakes
-    colmena = {
-      url = "github:zhaofengli/colmena";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-compat.follows = "flake-compat";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    dns = {
-      url = "github:nix-community/dns.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-utils.follows = "flake-utils";
-    };
-    # disko = {
-    #   url = "github:nix-community/disko";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    impermanence.url = "github:nix-community/impermanence";
-    lanzaboote.follows = "nur/lanzaboote";
-    sops-nix.follows = "nur/sops-nix";
-    nix-index-database.follows = "nur/nix-index-database";
+    # nix-secrets.url = "github:A1ca7raz/nix-secrets";
+    nixpkgs.follows = "pkgs/nixpkgs";
+    flake-parts.follows = "pkgs/flake-parts";
   };
 
   outputs =
@@ -74,22 +35,32 @@
           presetsPath = ./profiles/__templates;
           constantsPath = ./constant;
           enableColmenaHive = true;
-          extraSpecialArgs = {
-            inherit (inputs.nix-secrets) variables;
-          };
+          # extraSpecialArgs = {
+          #   inherit (inputs.nix-secrets) variables;
+          # };
         };
         packages.pkgsPath = ./pkgs;
         modules.path = ./modules;
       };
 
       flake = {
-        nixosModules = with inputs; {
-          sops = sops-nix.nixosModules.sops;
-          impermanence = impermanence.nixosModules.impermanence;
-          home = home-manager.nixosModules.home-manager;
-          lanzaboote = lanzaboote.nixosModules.lanzaboote;
-          nur = inputs.nur.nixosModule;
+        nixosModules = with inputs.pkgs.nixosModules; {
+          colmena = colmena;
+          home = home-manager;
+          impermanence = impermanence;
+          lanzaboote = lanzaboote;
+          nix-index = nix-index-database;
+          sops = sops;
+
+          nur = { ... }: {
+            imports = [
+              default
+              inputs.modules.nixosModules.all
+            ];
+          };
         };
+
+        inherit (inputs.pkgs) homeModules;
       };
 
       perSystem = { config, pkgs, system, ... }: {
@@ -99,8 +70,7 @@
             allowUnfree = true;
           };
           overlays = [
-            inputs.nur.overlays.default
-            inputs.nur.overlays.nixpaks
+            inputs.pkgs.overlays.default
             self.overlays.pkgs
           ];
         };
@@ -115,4 +85,15 @@
         };
       };
     };
+
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.garnix.io"
+      "https://a1ca7raz-nur.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+      "a1ca7raz-nur.cachix.org-1:twTlSh62806B8lfG0QQzge4l5srn9Z8/xxyAFauOZnQ="
+    ];
+  };
 }

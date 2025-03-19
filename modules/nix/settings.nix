@@ -12,7 +12,7 @@
     channel.enable = false;
     # https://github.com/NixOS/nixpkgs/issues/204292
     registry.nixpkgs.flake = inputs.nixpkgs;
-    registry.nurpkgs.flake = inputs.nur;
+    registry.nurpkgs.flake = inputs.pkgs;
 
     settings = {
       trusted-users = [ "root" "nomad" ];
@@ -26,7 +26,7 @@
       ];
       nix-path = [
         "nixpkgs=${pkgs.path}"
-        "nurpkgs=${inputs.nur}"
+        "nurpkgs=${inputs.pkgs}"
       ];
       auto-allocate-uids = true;
       use-cgroups = true;
