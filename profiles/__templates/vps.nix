@@ -13,7 +13,7 @@
     programs.shell.misc
     programs.server
 
-    services.server.openssh
+    services.common.openssh
 
     (system.boot.exclude ["console"])
     system.misc
