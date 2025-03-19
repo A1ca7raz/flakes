@@ -6,6 +6,11 @@
         commandLineArgs = "--extensions-dir ~/.local/share/VSCodium/extensions";
       };
     };
+
+    xdg.mimeApps = {
+      associations.added."inode/directory" = "codium.desktop";
+      defaultApplications."inode/directory" = "codium.desktop";
+    };
   };
 
 
