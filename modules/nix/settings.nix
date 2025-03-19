@@ -21,7 +21,6 @@
         "flakes"
         "auto-allocate-uids"
         "cgroups"
-        # "repl-flake"
         "ca-derivations"
       ];
       nix-path = [
@@ -32,6 +31,8 @@
       use-cgroups = true;
       auto-optimise-store = true;
       builders-use-substitutes = true;
+
+      accept-flake-config = true;
 
       # nix-direnv
       keep-outputs = true;
