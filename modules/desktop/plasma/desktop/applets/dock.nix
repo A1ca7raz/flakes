@@ -21,7 +21,7 @@
         "preferred://browser"
         "applications:codium.desktop"
         "applications:spotify.desktop"
-        "applications:org.telegram.desktop.desktop"
+        "applications:com.ayugram.desktop.desktop"
         "applications:systemsettings.desktop"
       ];
       showOnlyCurrentScreen = "true";

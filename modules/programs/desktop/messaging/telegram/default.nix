@@ -1,13 +1,12 @@
 {
   homeModule = { pkgs, ... }: {
     home.packages = [
-      pkgs.telegram-desktop
-#       pkgs."64gram"
+      pkgs.ayugram-desktop
     ];
   };
 
   nixosModule = { user, lib, ... }:
     with lib; mkPersistDirsModule user [
-      (ls "TelegramDesktop")
+      (ls "AyuGramDesktop")
     ];
 }
