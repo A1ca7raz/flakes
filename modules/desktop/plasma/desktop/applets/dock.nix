@@ -17,9 +17,9 @@
     config.General = {
       iconSpacing = "3";
       launchers = builtins.concatStringsSep "," [
-        "applications:org.kde.dolphin.desktop"
+        "preferred://filemanager"
         "preferred://browser"
-        "applications:codium.desktop"
+        "applications:codium-url-handler.desktop"
         "applications:spotify.desktop"
         "applications:com.ayugram.desktop.desktop"
         "applications:systemsettings.desktop"

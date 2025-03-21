@@ -7,10 +7,7 @@
       };
     };
 
-    xdg.mimeApps = {
-      associations.added."inode/directory" = "codium.desktop";
-      defaultApplications."inode/directory" = "codium.desktop";
-    };
+    xdg.mimeApps.associations.added."inode/directory" = "codium.desktop";
   };
 
 
