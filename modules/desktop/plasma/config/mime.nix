@@ -22,9 +22,6 @@ in {
       "video/mp4" = mpv;
       "application/pdf" = firefox;
       "application/x-zerosize" = kate;
-      "x-scheme-handler/http" = firefox;
-      "x-scheme-handler/https" = firefox;
-      "text/html" = firefox;
     };
   };
 }
