@@ -7,7 +7,7 @@
       };
     };
 
-    xdg.mimeApps.associations.added."inode/directory" = "codium.desktop";
+    xdg.mimeApps.associations.added."inode/directory" = "codium-url-handler.desktop";
   };
 
 
