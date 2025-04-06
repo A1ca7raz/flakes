@@ -118,6 +118,7 @@ rec {
       Substitutions = {
         subsMatchApp = builtins.concatStringsSep "," [
           ''"Telegram Desktop"''
+          ''"AyuGram Desktop"''
           ''"Gimp-.*"''
           ''"soffice.bin"''
           ''"Spotify.*"''
@@ -141,9 +142,11 @@ rec {
           ''".*"''
           ''".*"''
           ''".*"''
+          ''".*"''
         ];
         subsReplace = builtins.concatStringsSep "," [
           ''"Telegram"''
+          ''"AyuGram"''
           ''"Gimp"''
           ''"LibreOffice"''
           ''"Spotify"''
