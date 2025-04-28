@@ -30,8 +30,6 @@
     (programs.desktop.exclude [
       "development.jetbrains"
       "messaging.matrix"
-      "editors.logseq"
-      "editors.affine"
       "graphics.krita"
     ])
 
