@@ -152,11 +152,11 @@
     },
     "flamework": {
       "locked": {
-        "lastModified": 1742389255,
-        "narHash": "sha256-20fZvnprj8+xAu/AAZzZJs5eZb/u49JuH82g3LmMQb8=",
+        "lastModified": 1746686883,
+        "narHash": "sha256-brkN5b8PrKmzb/RqGLEBkGvcZNwHAzOjkCEhB7zCvos=",
         "owner": "A1ca7raz",
         "repo": "flamework",
-        "rev": "1a5bb93d1bd934cc7bd88e56bd8811c7d8cc9ef8",
+        "rev": "6125b2e60a95e276f847a2d6859805dfa1d98e6a",
         "type": "github"
       },
       "original": {
