@@ -28,12 +28,13 @@
     hardware.xbox
 
     (programs.desktop.exclude [
-      "development.jetbrains"
       "messaging.matrix"
       "graphics.krita"
     ])
 
-    services.desktop
+    (services.desktop.exclude [
+      "webai"
+    ])
 
     system.kernel.xanmod
     system.security.secureboot
