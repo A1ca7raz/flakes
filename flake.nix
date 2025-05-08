@@ -5,7 +5,7 @@
     pkgs.url = "github:A1ca7raz/nurpkgs";
     modules.url = "github:A1ca7raz/nur-modules";
     flamework.url = "github:A1ca7raz/flamework";
-    # nix-secrets.url = "github:A1ca7raz/nix-secrets";
+    nix-secrets.url = "git+ssh://git@github.com/A1ca7raz/nix-secrets?shallow=1";
     nixpkgs.follows = "pkgs/nixpkgs";
     flake-parts.follows = "pkgs/flake-parts";
   };
@@ -35,9 +35,9 @@
           presetsPath = ./profiles/__templates;
           constantsPath = ./constant;
           enableColmenaHive = true;
-          # extraSpecialArgs = {
-          #   inherit (inputs.nix-secrets) variables;
-          # };
+          extraSpecialArgs = {
+            inherit (inputs.nix-secrets) variables secrets;
+          };
         };
         packages.pkgsPath = ./pkgs;
         modules.path = ./modules;

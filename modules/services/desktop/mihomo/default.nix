@@ -1,13 +1,13 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, secrets, const, ... }:
 with lib; let
   pkg = pkgs.mihomo;
-  subscriptionEnv = config.sops.secrets.mihomo.path;
+  subscriptionEnv = config.sops.secrets."host/subscription_env".path;
 in {
   # FIXME: use tproxy
   # imports = [ ./tproxy.nix ];
 
-  utils.secrets.mihomo.path = ./env.enc.json;
-  sops.secrets.mihomo.mode = "0600";
+  utils.secrets."host/subscription_env".path = secrets.hosts.${const.node.profileName};
+  sops.secrets."host/subscription_env".mode = "0600";
 
   systemd.services.mihomo =
   let
@@ -37,7 +37,7 @@ in {
 
       echo "Fetching latest configuration..."
       curl --connect-timeout 5 --retry 3 --retry-delay 1 \
-        -L $MIHOMO_SUBSCRIPTION_URI \
+        -L $SUBSCRIPTION_URI \
         -o $STATE_DIRECTORY/config.yaml
 
       # Restore backup if current config cannot pass the check
@@ -62,7 +62,7 @@ in {
       if ! [[ -f $STATE_DIRECTORY/config.yaml && `find $STATE_DIRECTORY/config.yaml -mmin -2` ]]; then
         echo "Updating configuration..."
         curl --connect-timeout 5 --retry 3 --retry-delay 1 \
-          -L $MIHOMO_SUBSCRIPTION_URI \
+          -L $SUBSCRIPTION_URI \
           -o $STATE_DIRECTORY/config.new.yaml
 
         if [[ -f $STATE_DIRECTORY/config.new.yaml && `mihomo -t -d $STATE_DIRECTORY -f $STATE_DIRECTORY/config.new.yaml` ]]; then

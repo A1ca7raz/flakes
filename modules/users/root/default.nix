@@ -1,7 +1,7 @@
-{ pkgs, lib, config, const, ... }:
+{ pkgs, lib, config, const, secrets, ... }:
 {
-  utils.secrets.rootpwd.path = ./rootpwd.enc.json;
-  sops.secrets.rootpwd.neededForUsers = true;
+  utils.secrets."root/hashed_password".path = secrets.users.root;
+  sops.secrets."root/hashed_password".neededForUsers = true;
 
   users.users.root = {
     shell = pkgs.fish;
@@ -10,7 +10,7 @@
   } // (with lib.utils; (
     if isDebug
     then { password = "asd"; }
-    else { hashedPasswordFile = config.sops.secrets.rootpwd.path; }
+    else { hashedPasswordFile = config.sops.secrets."root/hashed_password".path; }
   ));
 
   programs.fish.enable = lib.mkDefault true;

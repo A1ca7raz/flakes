@@ -1,15 +1,14 @@
-{ config, ... }:
+{ config, secrets, const, ... }:
 let
   enabled = { u2fAuth = true; };
 in {
-  utils.secrets.u2f_keys.path = ./u2f_keys.enc.json;
-  sops.secrets.u2f_keys.mode = "0444";
+  utils.secrets."host/fido_token".path = secrets.hosts.${const.node.profileName};
 
   security.pam = {
     u2f.enable = true;
     u2f.settings = {
       cue = true;
-      authfile = config.sops.secrets.u2f_keys.path;
+      authfile = config.sops.secrets."host/fido_token".path;
     };
 
     services = {

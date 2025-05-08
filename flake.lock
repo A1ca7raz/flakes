@@ -469,6 +469,22 @@
         "type": "github"
       }
     },
+    "nix-secrets": {
+      "locked": {
+        "lastModified": 1746697700,
+        "narHash": "sha256-g2O7n+62SPAbbuGyWAd7f0M5c7RRwMGOOyWmO3xLPJs=",
+        "ref": "refs/heads/main",
+        "rev": "c8a1c81b65e920b50c8f880aafe84a0f8dda83bd",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/A1ca7raz/nix-secrets"
+      },
+      "original": {
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/A1ca7raz/nix-secrets"
+      }
+    },
     "nixpak": {
       "inputs": {
         "flake-parts": "flake-parts_2",
@@ -664,6 +680,7 @@
         ],
         "flamework": "flamework",
         "modules": "modules",
+        "nix-secrets": "nix-secrets",
         "nixpkgs": [
           "pkgs",
           "nixpkgs"

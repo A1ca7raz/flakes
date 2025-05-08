@@ -1,7 +1,7 @@
-{ pkgs, config, lib, const, ... }:
+{ pkgs, lib, config, const, secrets, ... }:
 {
-  utils.secrets.nomad_pwd.path = ./nomadpwd.enc.json;
-  sops.secrets.nomad_pwd.neededForUsers = true;
+  utils.secrets."nomad/hashed_password".path = secrets.users.nomad;
+  sops.secrets."nomad/hashed_password".neededForUsers = true;
 
   users.users.nomad = {
     isNormalUser = true;
@@ -9,7 +9,7 @@
     shell = pkgs.fish;
 
     # Authentication
-    hashedPasswordFile = config.sops.secrets.nomad_pwd.path;
+    hashedPasswordFile = config.sops.secrets."nomad/hashed_password".path;
     openssh.authorizedKeys.keys = const.sshkeys;
   };
 
