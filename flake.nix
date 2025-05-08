@@ -88,7 +88,7 @@
 
   nixConfig = {
     extra-substituters = [
-      "https://cache.garnix.io"
+      # "https://cache.garnix.io"
       "https://a1ca7raz-nur.cachix.org"
     ];
     extra-trusted-public-keys = [
