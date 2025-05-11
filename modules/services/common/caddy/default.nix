@@ -1,0 +1,27 @@
+{ config, lib, variables, ... }:
+{
+  services.caddy.enable = true;
+  # services.caddy = {
+  #   enable = true;
+  # } // (
+  #   if lib.utils.isServer
+  #   then { acmeCA = "https://pki.insyder/acme/x1/directory"; }
+  #   else {}
+  # );
+
+  # Reverse proxy netns
+  utils.netns.veth.caddy = {
+    bridge = "0";
+    netns = "proxy";
+    ipAddrs = variables.homelab.services.caddy.cidr;
+  };
+
+  systemd.services.caddy = lib.mkIf config.utils.netns.enable {
+    after = [ "netns-veth-caddy.service" ];
+    bindsTo = [ "netns-veth-caddy.service" ];
+
+    unitConfig.JoinsNamespaceOf = [ "netns@proxy.service" ];
+    serviceConfig.BindReadOnlyPaths = ["/etc/netns/proxy/resolv.conf:/etc/resolv.conf"];
+    serviceConfig.PrivateNetwork = true;
+  };
+}
