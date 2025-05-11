@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, user, ... }:
 {
   environment.persistence."/nix/persist".directories = [
     "/etc/NetworkManager/system-connections"
@@ -9,8 +9,8 @@
     iwd
   ];
 
-  users.users.nomad.extraGroups = [ "networkmanager" ];
-  users.extraGroups.networkmanager.members = ["root"];
+  users.users.${user}.extraGroups = [ "networkmanager" ];
+  users.extraGroups.networkmanager.members = [ "root" ];
 
   networking.networkmanager = {
     enable = true;
