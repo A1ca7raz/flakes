@@ -1,16 +1,20 @@
 { ... }:
 let
-  mountOptions = ["discard=async" "noatime" "nodiratime" "ssd" "compress=zstd:3" "space_cache=v2"];
+  tuneOptions = [
+    "noatime"
+    "nodiratime"
+    "compress=zstd"
+  ];
 
   mkRootMount = subvol: {
     device = "/dev/mapper/block";
     fsType = "btrfs";
-    options = [ "subvol=/${subvol}" ] ++ mountOptions;
+    options = [ "subvol=/${subvol}" ] ++ tuneOptions;
   };
 in {
   fileSystems."/" = {
     fsType = "tmpfs";
-    options = [ "defaults" "size=2G" "mode=755" ];
+    options = [ "defaults" "size=2G" "mode=755" "nosuid" "nodev" ];
   };
 
   fileSystems."/boot" = {
@@ -22,7 +26,7 @@ in {
   fileSystems."/swap" = {
     device = "/dev/mapper/block";
     fsType = "btrfs";
-    options = [ "subvol=/SWAP" "noatime" "nodiratime" "ssd" ];
+    options = [ "subvol=/SWAP" "noatime" "nodiratime" ];
   };
 
   fileSystems."/nix" = mkRootMount "NIX";
@@ -31,7 +35,12 @@ in {
 
   boot.initrd.luks.devices.block = {
     device = "/dev/disk/by-partlabel/ROOT";
+    allowDiscards = true;
     bypassWorkqueues = true;
-    crypttabExtraOpts = [ "fido2-device=auto" "discard" ];
+    crypttabExtraOpts = [
+      "fido2-device=auto"
+      "same-cpu-crypt"
+      "submit-from-crypt-cpus"
+    ];
   };
 }
