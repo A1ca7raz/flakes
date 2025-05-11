@@ -6,12 +6,9 @@
   tags = [ lib.tags.server ];
 
   modules = with self.modules; [
-    # hosts.nodes
-
     nix.settings
 
     programs.shell.misc
-    programs.server
 
     services.common.openssh
 

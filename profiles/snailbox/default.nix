@@ -1,11 +1,8 @@
 { self, lib, templates, ... }:
-let
-  ipv4 = "198.18.0.1";
-  ipv6 = "fcb7:25f7:5bf3:100::1";
-in {
+{
   imports = [ templates.vps ];
 
-  targetHost = ipv4;
+  targetHost = "192.168.10.168";
   hostName = "oxygenbox";
   tags = with lib.tags; [
     local internal private
@@ -14,28 +11,39 @@ in {
   modules = with self.modules; [
     hardware.intelcpu
 
-    services.server.domains
-
-    # # Infra
-    services.server.infra.router
-    # services.server.infra.step-ca
-    # services.server.infra.caddy
-    # services.server.infra.redis
-    # services.server.infra.postgresql
-
-    # # Services
-    # services.server.applications.gitea
-    # services.server.applications.ocis
-
     system.network.netns
     system.bootloader.efi.grub.removable
     system.kernel.xanmod
+
+    # {
+    #   # PostgreSQL Tune
+    #   # https://pgtune.leopard.in.ua/
+    #   services.postgresql.settings = {
+    #     # DB Version: 17
+    #     # OS Type: linux
+    #     # DB Type: mixed
+    #     # Total Memory (RAM): 4 GB
+    #     # CPUs num: 4
+    #     # Connections num: 100
+    #     # Data Storage: ssd
+    #     max_connections = 100;
+    #     shared_buffers = "1GB";
+    #     effective_cache_size = "3GB";
+    #     maintenance_work_mem = "256MB";
+    #     checkpoint_completion_target = 0.9;
+    #     wal_buffers = "16MB";
+    #     default_statistics_target = 100;
+    #     random_page_cost = 1.1;
+    #     effective_io_concurrency = 200;
+    #     work_mem = "5041kB";
+    #     huge_pages = "off";
+    #     min_wal_size = "1GB";
+    #     max_wal_size = "4GB";
+    #     max_worker_processes = 4;
+    #     max_parallel_workers_per_gather = 2;
+    #     max_parallel_workers = 4;
+    #     max_parallel_maintenance_workers = 2;
+    #   };
+    # }
   ];
-
-  args = {
-    privateIPv4 = ipv4;
-    privateIPv6 = ipv6;
-
-    DHCPRangeV4 = [ "198.18.0.2" "198.18.0.50" "255.255.255.0" "12h" ];
-  };
 }
