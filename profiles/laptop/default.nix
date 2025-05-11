@@ -1,13 +1,10 @@
 { self, lib, templates, ... }:
 {
-  imports = [
-    templates.desktop
-  ];
+  imports = [ templates.desktop ];
 
   targetHost = "192.168.10.3";
   targetPort = 22;
   targetUser = "nomad";
-  # system = "x86_64-linux";
   hostName = "oxygenlaptop";
 
   tags = with lib.tags; [
