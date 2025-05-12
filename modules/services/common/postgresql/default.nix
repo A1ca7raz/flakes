@@ -15,4 +15,7 @@
 
     enableJIT = true;
   };
+
+  # Set nodatacow for PostgreSQL data directory
+  systemd.tmpfiles.rules = [ "H /var/lib/postgresql - - - - +C" ];
 }

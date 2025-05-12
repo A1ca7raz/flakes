@@ -28,7 +28,7 @@ in {
     bindsTo = [ "netns-veth-psql.service" ];
     unitConfig.JoinsNamespaceOf = [ "netns@psql.service" ];
     # Alternatively: serviceConfig.NetworkNamespacePath = "/var/run/netns/${netns}";
-    serviceConfig.BindReadOnlyPaths = ["/etc/netns/psql/resolv.conf:/etc/resolv.conf"];
+    serviceConfig.BindReadOnlyPaths = [ "/etc/netns/psql/resolv.conf:/etc/resolv.conf" ];
     serviceConfig.PrivateNetwork = true;
   };
 
