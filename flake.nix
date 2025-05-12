@@ -8,10 +8,11 @@
     nix-secrets.url = "git+ssh://git@github.com/A1ca7raz/nix-secrets?shallow=1";
     nixpkgs.follows = "pkgs/nixpkgs";
     flake-parts.follows = "pkgs/flake-parts";
+    dns.follows = "pkgs/dns";
   };
 
   outputs =
-    inputs@{ self, nixpkgs, flake-parts, flamework, ... }:
+    inputs@{ self, nixpkgs, flake-parts, flamework, dns, ... }:
     let
       lib = flamework.lib nixpkgs.lib;
     in
@@ -37,6 +38,7 @@
           enableColmenaHive = true;
           extraSpecialArgs = {
             inherit (inputs.nix-secrets) variables secrets;
+            zones = inputs.nix-secrets.zones { inherit dns lib; };
           };
         };
         packages.pkgsPath = ./pkgs;
