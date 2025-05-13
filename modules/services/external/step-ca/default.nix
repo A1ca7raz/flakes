@@ -7,20 +7,31 @@ in {
   ];
 
   utils.secrets."x1/private_key".path = secrets.services.pki.x1;
+  sops.secrets."x1/private_key" = {
+    owner = "step-ca";
+    group = "step-ca";
+  };
+
+  utils.secrets."x1/password".path = secrets.services.pki.x1;
 
   services.step-ca = {
     enable = true;
+    address = "";
+    port = 443;
+    intermediatePasswordFile = config.sops.secrets."x1/password".path;
 
     settings = {
       root = ../../../system/security/r1.crt;
       key = config.sops.secrets."x1/private_key".path;
-      address = ":443";
+      crt = ./x1.crt;
+
+      # address = ":443";
       dnsNames = [ domain ];
 
       db = {
         type = "badgerV2";
-        dataSource = "db";
-        valueDir = "valuedb";
+        dataSource = "/var/lib/step-ca/db";
+        valueDir = "/var/lib/step-ca/valuedb";
       };
 
       crl = {
@@ -29,11 +40,10 @@ in {
       };
 
       authority = {
-        disableIssuedAtCheck = false;
         claims = {
           minTLSCertDuration = "24h";
-          maxTLSCertDuration = "720d";
-          defaultTLSCertDuration = "360d";
+          maxTLSCertDuration = "17280h";    # 720 days
+          defaultTLSCertDuration = "8640h";  # 360 days
           disableRenewal = false;
           allowRenewalAfterExpiry = false;
         };
@@ -63,6 +73,15 @@ in {
           }
         ];
       };
+      # tls = {
+      #   cipherSuites = [
+      #     "TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256"
+      #     "TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256"
+      #   ];
+      #   minVersion = 1.2;
+      #   maxVersion = 1.3;
+      #   renegotiation = false;
+      # };
     };
   };
 
