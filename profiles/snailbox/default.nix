@@ -51,6 +51,11 @@
       };
     }
 
-    { utils.netns.bridge."0".ipAddrs = variables.homelab.vnet.ipAddrs; }
+    {
+      utils.netns.bridge = {
+        homelab.ipAddrs = variables.vnet.homelab;
+        global.ipAddrs = variables.vnet.global;
+      };
+    }
   ];
 }

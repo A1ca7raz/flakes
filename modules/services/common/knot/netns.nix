@@ -1,11 +1,11 @@
 { variables, ... }:
 let
-  inherit (variables.homelab.services.dns)
+  inherit (variables.services.dns)
     cidr
   ;
 in {
   utils.netns.veth.knot = {
-    bridge = "0";
+    bridge = "global";
     netns = "knot";
     ipAddrs = cidr;
   };

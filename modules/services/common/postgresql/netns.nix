@@ -6,7 +6,7 @@ let
     mkForce
   ;
 
-  inherit (variables.homelab.services.postgresql)
+  inherit (variables.services.postgresql)
     ip
     cidr
   ;
@@ -18,7 +18,7 @@ let
   remoteIPs = [ ip ];
 in {
   utils.netns.veth.psql = {
-    bridge = "0";
+    bridge = "global";
     netns = "psql";
     ipAddrs = cidr;
   };

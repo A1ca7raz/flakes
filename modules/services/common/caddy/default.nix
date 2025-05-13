@@ -11,9 +11,9 @@
 
   # Reverse proxy netns
   utils.netns.veth.caddy = {
-    bridge = "0";
+    bridge = "global";
     netns = "proxy";
-    ipAddrs = variables.homelab.services.caddy.cidr;
+    ipAddrs = variables.services.caddy.cidr;
   };
 
   systemd.services.caddy = lib.mkIf config.utils.netns.enable {
