@@ -1,13 +1,9 @@
 { config, lib, variables, ... }:
 {
-  services.caddy.enable = true;
-  # services.caddy = {
-  #   enable = true;
-  # } // (
-  #   if lib.utils.isServer
-  #   then { acmeCA = "https://pki.insyder/acme/x1/directory"; }
-  #   else {}
-  # );
+  services.caddy = {
+    enable = true;
+    acmeCA = variables.misc.acme-endpoint;
+  };
 
   # Reverse proxy netns
   utils.netns.veth.caddy = {
@@ -22,7 +18,7 @@
 
     unitConfig.JoinsNamespaceOf = [ "netns@proxy.service" ];
     serviceConfig = {
-      BindReadOnlyPaths = ["/etc/netns/proxy/resolv.conf:/etc/resolv.conf"];
+      BindReadOnlyPaths = [ "/etc/netns/proxy/resolv.conf:/etc/resolv.conf" ];
       PrivateNetwork = true;
 
       # Light-weight Harden
