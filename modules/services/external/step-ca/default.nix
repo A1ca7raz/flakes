@@ -13,6 +13,7 @@ in {
   };
 
   utils.secrets."x1/password".path = secrets.services.pki.x1;
+  utils.secrets."x1/leaf_tpl".path = secrets.services.pki.x1;
 
   services.step-ca = {
     enable = true;
@@ -63,13 +64,13 @@ in {
             type = "ACME";
             name = "x1";
             forceCN = true;
-            termsOfService = "http://${domain}/tos";
             website = "http://${domain}";
             challenges = [
               "http-01"
               "dns-01"
               "tls-alpn-01"
             ];
+            options.x509.templateFile = config.sops.secrets."x1/leaf_tpl".path;   # Add CRL endpoint
           }
         ];
       };
