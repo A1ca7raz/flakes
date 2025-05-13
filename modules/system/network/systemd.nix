@@ -1,9 +1,8 @@
 { config, lib, ... }:
 {
   systemd.network.enable = true;
-  services.resolved.enable = false;
-
-  networking.nameservers = [ "8.8.8.8" "8.8.4.4" ];
+  services.resolved.enable = true;  # Required by DNS from DHCP
+  networking.resolvconf.enable = false;
 
   systemd.network.networks.default =  {
     DHCP = "yes";
