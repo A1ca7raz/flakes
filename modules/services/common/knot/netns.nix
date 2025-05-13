@@ -1,6 +1,6 @@
 { variables, ... }:
 let
-  inherit (variables.services.dns)
+  inherit (variables.services.ns)
     cidr
   ;
 in {
