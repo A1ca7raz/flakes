@@ -1,20 +1,36 @@
 { config, lib, variables, ... }:
-{
+let
+  vethServices = [
+    "netns-veth-caddy1.service"
+    "netns-veth-caddy2.service"
+  ];
+in {
   services.caddy = {
     enable = true;
     acmeCA = variables.misc.acme-endpoint;
   };
 
   # Reverse proxy netns
-  utils.netns.veth.caddy = {
+  utils.netns.veth.caddy1 = {
     bridge = "global";
     netns = "proxy";
-    ipAddrs = variables.services.caddy.cidr;
+    ipAddrs = [
+      variables.services.caddy.cidr
+    ];
+  };
+
+  utils.netns.veth.caddy2 = {
+    bridge = "homelab";
+    netns = "proxy";
+    ipAddrs = [
+      variables.services.caddy2.cidr
+    ];
+    addDefaultRoute = false;
   };
 
   systemd.services.caddy = lib.mkIf config.utils.netns.enable {
-    after = [ "netns-veth-caddy.service" ];
-    bindsTo = [ "netns-veth-caddy.service" ];
+    after = vethServices;
+    bindsTo = vethServices;
 
     unitConfig.JoinsNamespaceOf = [ "netns@proxy.service" ];
     serviceConfig = {
