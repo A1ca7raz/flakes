@@ -5,7 +5,8 @@
   targetHost = "192.168.1.100";
   hostName = "oxygenbox";
   tags = with lib.tags; [
-    local internal private
+    "home"
+    private
   ];
 
   modules = with self.modules; [
@@ -20,11 +21,15 @@
     services.common.caddy
     services.common.knot
 
+    services.external.step-ca
+
+    services.internal.immich
+
     {
       # PostgreSQL Tune
       # https://pgtune.leopard.in.ua/
       services.postgresql.settings = {
-        # DB Version: 17
+        # DB Version: 16
         # OS Type: linux
         # DB Type: mixed
         # Total Memory (RAM): 4 GB
@@ -56,6 +61,9 @@
         homelab.ipAddrs = variables.vnet.homelab;
         global.ipAddrs = variables.vnet.global;
       };
+
+      # Disable AI for J1900
+      services.immich.machine-learning.enable = false;
     }
   ];
 }

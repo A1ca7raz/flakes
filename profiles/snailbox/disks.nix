@@ -32,23 +32,17 @@ in {
   };
 
   # NOTE: DATA Drive
-  # fileSystems."/mnt/data/0" = {
-  #   device = "/dev/disk/by-label/DATA0";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=/DATA0" ] ++ tuneOptions;
-  #   neededForBoot = true;
-  # };
-  # fileSystems."/mnt/data/1" = {
-  #   device = "/dev/disk/by-label/DATA0";
-  #   fsType = "btrfs";
-  #   options = [ "subvol=/DATA1" ] ++ tuneOptions;
-  #   neededForBoot = true;
-  # };
+  fileSystems."/mnt/data" = {
+    device = "/dev/disk/by-label/DATA";
+    fsType = "btrfs";
+    options = [ "subvol=/DATA" ] ++ tuneOptions;
+    neededForBoot = true;
+  };
 
-  # fileSystems."/var/lib/ocis/storage/" = {
-  #   device = "/mnt/data/1/ocis_storage";
-  #   depends = [ "/mnt/data/1" ];
-  #   fsType = "none";
-  #   options = [ "bind" ];
-  # };
+  fileSystems."/var/lib/immich" = {
+    device = "/mnt/data/immich";
+    depends = [ "/mnt/data" ];
+    fsType = "none";
+    options = [ "bind" ];
+  };
 }
