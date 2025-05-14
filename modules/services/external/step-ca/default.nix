@@ -7,13 +7,16 @@ in {
   ];
 
   utils.secrets."x1/private_key".path = secrets.services.pki.x1;
+  utils.secrets."x1/password".path = secrets.services.pki.x1;
+  utils.secrets."x1/leaf_tpl".path = secrets.services.pki.x1;
   sops.secrets."x1/private_key" = {
     owner = "step-ca";
     group = "step-ca";
   };
-
-  utils.secrets."x1/password".path = secrets.services.pki.x1;
-  utils.secrets."x1/leaf_tpl".path = secrets.services.pki.x1;
+  sops.secrets."x1/leaf_tpl" = {
+    owner = "step-ca";
+    group = "step-ca";
+  };
 
   services.step-ca = {
     enable = true;
