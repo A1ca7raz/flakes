@@ -8,6 +8,7 @@
   modules = with self.modules; [
     nix.settings
 
+    programs.shell.fish
     programs.shell.misc
 
     services.common.openssh

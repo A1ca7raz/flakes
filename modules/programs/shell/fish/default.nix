@@ -1,5 +1,9 @@
 { user, lib, ... }:
-with lib; {
+let
+  inherit (lib)
+    ls
+  ;
+in {
   programs.fish = {
     enable = true;
     useBabelfish = true;
@@ -9,7 +13,13 @@ with lib; {
     '';
   };
 
-  environment.persistence = mkPersistDirsTree user [
-    (ls "fish")
-  ];
+  environment.persistence."/nix/persist" =
+    if user == "root"
+    then {
+      directories = [ "/root/${ls "fish"}" ];
+    } else {
+      users.${user}.directories = [
+        (ls "fish")
+      ];
+    };
 }
