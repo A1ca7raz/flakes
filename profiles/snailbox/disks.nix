@@ -39,6 +39,13 @@ in {
     neededForBoot = true;
   };
 
+  fileSystems."/mnt/media" = {
+    device = "/dev/disk/by-label/DATA";
+    fsType = "btrfs";
+    options = [ "subvol=/MEDIA" ] ++ tuneOptions;
+    neededForBoot = true;
+  };
+
   fileSystems."/var/lib/immich" = {
     device = "/mnt/data/immich";
     depends = [ "/mnt/data" ];

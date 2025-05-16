@@ -24,6 +24,7 @@
     services.external.step-ca
 
     services.internal.immich
+    services.internal.jellyfin
 
     {
       # PostgreSQL Tune
