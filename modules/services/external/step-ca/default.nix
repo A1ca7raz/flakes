@@ -52,14 +52,6 @@ in {
           allowRenewalAfterExpiry = false;
         };
         policy.x509 = {
-          allow.dns = [
-            "*.insyder"
-            "*.home"
-          ];
-          allow.ip = [
-            "198.18.0.0/15"
-            "192.168.0.0/16"
-          ];
           allowWildcardNames = true;
         };
         provisioners = [
