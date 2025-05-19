@@ -25,6 +25,7 @@
 
     services.internal.immich
     services.internal.jellyfin
+    services.internal.torrent
 
     {
       # PostgreSQL Tune
