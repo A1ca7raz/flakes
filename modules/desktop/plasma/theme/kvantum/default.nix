@@ -3,12 +3,8 @@
     with lib; let
       inherit (config.lib.theme) KvantumTheme;
     in {
-      utils.kconfig.rules = [
-        { f = "kvconfig"; g = "General"; k = "theme"; v = KvantumTheme; }
-
-        # Application Style
-        { f = "kdeglobals"; g = "KDE"; k = "widgetStyle"; v = "kvantum"; }
-      ];
+      utils.kconfig.kvconfig.content.General.theme = KvantumTheme;
+      utils.kconfig.kdeglobals.content.KDE.widgetStyle = "kvantum";
 
       # Persistence
       environment.persistence = mkPersistDirsTree user [
@@ -16,12 +12,12 @@
       ];
       environment.overlay = mkOverlayTree user {
         kvconfig = {
-          source = config.utils.kconfig.files.kvconfig.path;
+          source = config.utils.kconfig.kvconfig.path;
           target = c "Kvantum/kvantum.kvconfig";
         };
       };
     };
-  
+
   homeModule = { pkgs, ... }: {
     home.packages = with pkgs; [
       kdePackages.qtstyleplugin-kvantum

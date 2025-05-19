@@ -1,15 +1,20 @@
 { config, lib, user, ... }:
-with lib; let
+let
+  inherit (lib)
+    foldl
+    mkOverlayModule
+    c
+  ;
+
   mkcl = foldl (acc: i: acc // {
     ${i} = {
       target = c i;
-      source = config.utils.kconfig.files."${i}".path;
+      source = config.utils.kconfig."${i}".path;
     };
   }) {};
 in mkOverlayModule user (mkcl [
   "kiorc"
   "kdeglobals"
-  "kcmfonts"
   "kcminputrc"
   "kwinrc"
   "plasma-localerc"
@@ -32,7 +37,6 @@ in mkOverlayModule user (mkcl [
   "touchpadxlibinputrc"
 
   "plasmarc"
-  # "sierrabreezeenhancedrc"
   "ksplashrc"
   "kscreenlockerrc"
 ])

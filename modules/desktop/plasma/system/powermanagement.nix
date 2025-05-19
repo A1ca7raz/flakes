@@ -1,10 +1,15 @@
 { lib, ... }:
-with lib; {
-  utils.kconfig.files.powerdevilrc.items = [
+let
+  inherit (lib)
+    mkItem
+    convertItemsToKconfig
+  ;
+in {
+  utils.kconfig.powerdevilrc.content = convertItemsToKconfig [
     (mkItem "BatteryManagement" "BatteryCriticalAction" "1")
   ];
 
-  utils.kconfig.files.powermanagementprofilesrc.items = [
+  utils.kconfig.powermanagementprofilesrc.content = convertItemsToKconfig [
     (mkItem "AC" "icon" "battery-charging")
     (mkItem ["AC" "BrightnessControl"] "value" "100")
     (mkItem ["AC" "HandleButtonEvents"] "lidAction" "64")

@@ -1,76 +1,93 @@
 {
-  nixosModule = { config, lib, ... }:
-    let
-      inherit (lib) mkRule;
-      kwinrc = mkRule "kwinrc";
-    in {
-      utils.kconfig.rules = [
-        ## Desktop Effects
-        (kwinrc "Plugins" "blurEnabled" "false")
-        # (kwinrc "Effect-blur" "BlurStrength" "10")
-        # (kwinrc "Effect-blur" "NoiseStrength" "11")
-        (kwinrc "Plugins" "forceblurEnabled" "true")
-        (kwinrc "Effect-blurplus" "BlurMatching" "false")
-        (kwinrc "Effect-blurplus" "BlurNonMatching" "true")
-        (kwinrc "Effect-blurplus" "BlurStrength" "8")
-        (kwinrc "Effect-blurplus" "FakeBlur" "true")
-        (kwinrc "Effect-blurplus" "PaintAsTranslucent" "true")
-        (kwinrc "Effect-blurplus" "TransparentBlur" "false")
-        (kwinrc "Effect-blurplus" "WindowClasses" "")
-        (kwinrc "Effect-blurplus" "BlurDecorations" "true")
-        (kwinrc "Plugins" "contrastEnabled" "true")
-        (kwinrc "Plugins" "dynamic_workspacesEnabled" "true")
-        (kwinrc "Plugins" "kwin4_effect_eyeonscreenEnabled" "true")
-        (kwinrc "Plugins" "kwin4_effect_windowapertureEnabled" "false")
-        (kwinrc "Plugins" "kwin4_effect_dimscreenEnabled" "true")
-        (kwinrc "Plugins" "kwin4_effect_geometry_changeEnabled" "true")
-        (kwinrc "Effect-kwin4_effect_scale" "InScale" "0.3")
-        (kwinrc "Effect-kwin4_effect_scale" "OutScale" "0.3")
-        (kwinrc "Effect-slide" "HorizontalGap" "0")
-        (kwinrc "Effect-slide" "VerticalGap" "0")
-        (kwinrc "Effect-slide" "SlideDocks" "true")
+  nixosModule = { config, lib, ... }: {
+    utils.kconfig.kwinrc.content = {
+      Plugins = {
+        blurEnabled = false;
+        forceblurEnabled = true;
+        contrastEnabled = true;
+        dynamic_workspacesEnabled = true;
+        kwin4_effect_eyeonscreenEnabled = true;
+        kwin4_effect_windowapertureEnabled = false;
+        kwin4_effect_dimscreenEnabled = true;
+        kwin4_effect_geometry_changeEnabled = true;
+        minimizeallEnabled = true;
+        synchronizeskipswitcherEnabled = true;
+        unmaxorminEnabled = true;
+      };
 
-        ## Screen Locker
-        (mkRule "kscreenlockerrc" "Daemon" "Autolock" "false")
-        (mkRule "kscreenlockerrc" "Greeter" "WallpaperPlugin" "org.kde.potd")
-        (mkRule "kscreenlockerrc" ["Greeter" "Wallpaper" "org.kde.potd" "General"] "Provider" "bing")
-        (mkRule "kscreenlockerrc" ["Greeter" "Wallpaper" "org.kde.potd" "General"] "UpdateOverMeteredConnection" "1")
+      Effect-blurplus = {
+        BlurMatching = false;
+        BlurNonMatching = true;
+        BlurStrength = 8;
+        FakeBlur = true;
+        PaintAsTranslucent = true;
+        TransparentBlur = false;
+        WindowClasses = "";
+        BlurDecorations = true;
+      };
 
-        ## Use accent color From Wallpaper
-        (mkRule "kdeglobals" "General" "accentColorFromWallpaper" "true")
+      Effect-kwin4_effect_scale = {
+        InScale = 0.3;
+        OutScale = 0.3;
+      };
 
-        ## Screen Edge Actions
-        (kwinrc "Effect-windowview" "BorderActivateClass" "7")
-        (kwinrc "Effect-overview" "BorderActivate" "1")
-        (kwinrc "Script-minimizeall" "BorderActivate" "3")
+      Effect-slide = {
+        HorizontalGap = 0;
+        VerticalGap = 0;
+        SlideDocks = true;
+      };
 
-        ## Normal Behavior
-        (mkRule "kdeglobals" "KDE" "SingleClick" "false")
-        (mkRule "kdeglobals" "KDE" "ScrollbarLeftClickNavigatesByPage" "true")
+      Effect-windowview.BorderActivateClass = 7;
+      Effect-overview.BorderActivate = 1;
+      Script-minimizeall.BorderActivate = 3;
 
-        ## Window Behavior
-        (mkRule "kwinrc" "Windows" "DelayFocusInterval" "0")
-        (mkRule "kwinrc" "MouseBindings" "CommandTitlebarWheel" "Maximize/Restore")
-        (mkRule "kwinrc" "MouseBindings" "CommandActiveTitlebar2" "Close")
-        (mkRule "kwinrc" "MouseBindings" "CommandInactiveTitlebar2" "Close")
-        (mkRule "kdeglobals" "General" "AllowKDEAppsToRememberWindowPositions" "false")
-        (mkRule "kwinrc" "Windows" "ActivationDesktopPolicy" "BringToCurrentDesktop")
-        
-        ## TabBox
-        (mkRule "kwinrc" "TabBox" "HighlightWindows" "false")
-        (mkRule "kwinrc" "TabBox" "LayoutName" "thumbnail_grid")
-        (mkRule "kwinrc" "TabBox" "ShowDesktopMode" "1")
-        (mkRule "kwinrc" "TabBox" "ApplicationsMode" "1")
-        (mkRule "kwinrc" "TabBox" "OrderMinimizedMode" "1")
-        (mkRule "kwinrc" "TabBoxAlternative" "HighlightWindows" "false")
-        (mkRule "kwinrc" "TabBoxAlternative" "ShowTabBox" "false")
+      Windows = {
+        DelayFocusInterval = 0;
+        ActivationDesktopPolicy = "BringToCurrentDesktop";
+      };
 
-        ## KWin Scripts
-        (mkRule "kwinrc" "Plugins" "minimizeallEnabled" "true")
-        (mkRule "kwinrc" "Plugins" "synchronizeskipswitcherEnabled" "true")
-        (mkRule "kwinrc" "Plugins" "unmaxorminEnabled" "true")
-      ];
+      MouseBindings = {
+        CommandTitlebarWheel = "Maximize/Restore";
+        CommandActiveTitlebar2 = "Close";
+        CommandInactiveTitlebar2 = "Close";
+      };
+
+      TabBox = {
+        HighlightWindows = false;
+        LayoutName = "thumbnail_grid";
+        ShowDesktopMode = 1;
+        ApplicationsMode = 1;
+        OrderMinimizedMode = 1;
+      };
+
+      TabBoxAlternative = {
+        HighlightWindows = false;
+        ShowTabBox = false;
+      };
     };
+
+    utils.kconfig.kdeglobals.content = {
+      General = {
+        accentColorFromWallpaper = true;
+        AllowKDEAppsToRememberWindowPositions = false;
+      };
+
+      KDE = {
+        SingleClick = false;
+        ScrollbarLeftClickNavigatesByPage = true;
+      };
+    };
+
+    utils.kconfig.kscreenlockerrc.content = {
+      Daemon.Autolock = false;
+      Greeter.WallpaperPlugin = "org.kde.potd";
+
+      "Greeter/Wallpaper/org.kde.potd/General" = {
+        Provider = "bing";
+        UpdateOverMeteredConnection = 1;
+      };
+    };
+  };
 
   homeModule = { pkgs, ... }: {
     home.packages = with pkgs; [

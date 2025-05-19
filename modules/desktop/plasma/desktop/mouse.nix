@@ -1,10 +1,15 @@
 { lib, ... }:
-with lib; let
+let
+  inherit (lib)
+    mkItem
+    convertItemsToKconfig
+  ;
+
   btn = x: mkItem ["ActionPlugins" "0"] "${x}Button;NoModifier";
   btn_ = x: mkItem ["ActionPlugins" "0" "${x}Button;NoModifier"];
   btnR = btn_ "Right";
 in {
-  utils.kconfig.files.appletsrc.items = [
+  utils.kconfig.appletsrc.content = convertItemsToKconfig [
     # Common
     (btn "Back" "org.kde.switchdesktop")
     (btn "Forward" "switchwindow")

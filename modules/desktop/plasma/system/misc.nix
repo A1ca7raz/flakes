@@ -1,32 +1,35 @@
-{ lib, ... }:
+{ ... }:
 let
-  disableModule = x: lib.mkRule "kded5rc" "Module-${x}" "autoload" "false";
+  disableModules = builtins.foldl'
+    (acc: x:
+      acc // { "Module-${x}".autoload = false; }
+    )
+    {};
 in {
-  utils.kconfig.rules = with lib; [
-    ## KDE Daemon
-    (disableModule "baloosearchmodule")
-    (disableModule "browserintegrationreminder")
-    (disableModule "colorcorrectlocationupdater")
-    (disableModule "device_automounter")
-    (disableModule "donationmessage")
-    (disableModule "freespacenotifier")
-    (disableModule "kded_accounts")
-    (disableModule "kded_bolt")
-    (disableModule "plasmavault")
-    (disableModule "proxyscout")
-
-    ## Session
-    (mkRule "ksmserverrc" "General" "loginMode" "emptySession")
-
-    ## Notifications
-    (mkRule "plasmanotifyrc" "Notifications" "PopupPosition" "TopRight")
-
-    ## Other
-    (mkRule "kdeglobals" "General" "BrowserApplication" "firefox.desktop")
-    (mkRule "kaccessrc" "ScreenReader" "Enabled" "false")
-    (mkRule "kwalletrc" "Wallet" "First Use" "false")
-
-    ## Shakecursor
-    (mkRule "kdeglobals" "Effect-shakecursor" "Magnification" "2")
+  ## KDE Daemon
+  utils.kconfig.kded5rc.content = disableModules [
+    "baloosearchmodule"
+    "browserintegrationreminder"
+    "colorcorrectlocationupdater"
+    "device_automounter"
+    "donationmessage"
+    "freespacenotifier"
+    "kded_accounts"
+    "kded_bolt"
+    "plasmavault"
+    "proxyscout"
   ];
+
+  ## Session
+  utils.kconfig.ksmserverrc.content.General.loginMode = "emptySession";
+
+  ## Notifications
+  utils.kconfig.plasmanotifyrc.content.Notifications.PopupPosition = "TopRight";
+
+  ## Misc
+  utils.kconfig.kaccessrc.content.ScreenReader.Enabled = false;
+  utils.kconfig.kwalletrc.content.Wallet."First Use" = false;
+
+  ## Shakecursor
+  utils.kconfig.kdeglobals.content.Effect-shakecursor.Magnification = 2;
 }

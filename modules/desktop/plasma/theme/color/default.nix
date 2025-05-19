@@ -11,7 +11,5 @@ in {
     MyLightColor = mk "MyLight";
   };
 
-  utils.kconfig.files.kdeglobals.items = [
-    { g = "General"; k = "ColorScheme"; v = ColorScheme; }
-  ];
+  utils.kconfig.kdeglobals.content.General.ColorScheme = ColorScheme;
 }

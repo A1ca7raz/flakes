@@ -1,6 +1,11 @@
 { lib, ... }:
-{
-  utils.kconfig.files.kglobalshortcutsrc.items = with lib; [
+let
+  inherit (lib)
+    mkItem
+    convertItemsToKconfig
+  ;
+in {
+  utils.kconfig.kglobalshortcutsrc.content = convertItemsToKconfig [
     (mkItem "kaccess" "Toggle Screen Reader On and Off" "none,Meta+Alt+S,切换屏幕阅读器开关")
     (mkItem "kcm_touchpad" "Toggle Touchpad" "Meta+Ins\tTouchpad Toggle,Touchpad Toggle,切换触摸板")
     (mkItem "kwin" "Expose" "none,Ctrl+F9,显示/隐藏窗口平铺 (当前桌面)")

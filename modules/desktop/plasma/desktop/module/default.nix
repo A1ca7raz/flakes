@@ -9,6 +9,10 @@ let
     mkItem
     optionals
     forEach
+    convertItemsToKconfig
+  ;
+
+  inherit (builtins)
     concatStringsSep
   ;
 
@@ -171,33 +175,41 @@ in {
   };
 
   config = mkIf (cfg != {}) {
-    utils.kconfig.files.plasmashellrc.items = foldlAttrs
-      (acc: n: v:
-        acc ++ (
+    utils.kconfig.plasmashellrc.content =
+      let
+        items = foldlAttrs
+          (acc: n: v:
+            acc ++ (
+              foldlAttrs
+                (acc: n: v:
+                  acc ++ (
+                    parseConfig ["PlasmaViews" "Panel ${toString v.id}"] v.config
+                  )
+                )
+                []
+                v.panels
+            )
+          )
+          []
+          cfg;
+      in
+        convertItemsToKconfig items;
+
+    utils.kconfig.appletsrc.content =
+      let
+        items = foldlAttrs
+        (acc: n: v:
+          acc ++ parseMonitor v ++
           foldlAttrs
             (acc: n: v:
-              acc ++ (
-                parseConfig ["PlasmaViews" "Panel ${toString v.id}"] v.config
-              )
+              acc ++ parsePanel v
             )
             []
             v.panels
         )
-      )
-      []
-      cfg;
-
-    utils.kconfig.files.appletsrc.items = foldlAttrs
-      (acc: n: v:
-        acc ++ parseMonitor v ++
-        foldlAttrs
-          (acc: n: v:
-            acc ++ parsePanel v
-          )
-          []
-          v.panels
-      )
-      []
-      cfg;
+        []
+        cfg;
+      in
+        convertItemsToKconfig items;
   };
 }

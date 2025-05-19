@@ -179,11 +179,11 @@
     },
     "flamework": {
       "locked": {
-        "lastModified": 1746976486,
-        "narHash": "sha256-+ckl7MpDHoMulviekzMszohz3f1gs/GJBymvB4LWCWk=",
+        "lastModified": 1747580463,
+        "narHash": "sha256-pIyIYnoYur9ZWAFflkn24WLtv68V7NFy4P4brTHPink=",
         "owner": "A1ca7raz",
         "repo": "flamework",
-        "rev": "49564ef97dab5ad5e31608774f2b752f310a99aa",
+        "rev": "c40654e6345f6f14a667ab91481d4ca6dcace60c",
         "type": "github"
       },
       "original": {
@@ -439,11 +439,11 @@
     },
     "modules": {
       "locked": {
-        "lastModified": 1746984258,
-        "narHash": "sha256-+DFBmjywQ/V1LTQvyS7a7NcJuQa4ZuEdFCCbm5dgn18=",
+        "lastModified": 1747621931,
+        "narHash": "sha256-XYrnPPjmiN9EjCWWYVxvSYmj0GfXG353mzf43cdMzYM=",
         "owner": "A1ca7raz",
         "repo": "nur-modules",
-        "rev": "0f3a9e074f26b7ad6b7737a77ae5823df979e3fd",
+        "rev": "785f5a7f7d7d87436e1b647a317eb0a9f97e6387",
         "type": "github"
       },
       "original": {

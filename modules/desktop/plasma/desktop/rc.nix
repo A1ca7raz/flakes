@@ -8,7 +8,7 @@ in {
 
   environment.overlay = mkOverlayTree user {
     desktop-appletsrc = {
-      source = config.utils.kconfig.files.appletsrc.path;
+      source = config.utils.kconfig.appletsrc.path;
       target = c "plasma-org.kde.plasma.desktop-appletsrc";
     };
   };

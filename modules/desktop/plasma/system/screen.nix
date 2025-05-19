@@ -1,10 +1,9 @@
-{ lib, user, ... }:
-with lib; {
-  utils.kconfig.rules = [
-    (mkRule "kdeglobals" "KScreen" "ScaleFactor" "1.0625")
-    (mkRule "kwinrc" "Compositing" "WindowsBlockCompositing" "false")
-    (mkRule "kwinrc" "Compositing" "LatencyPolicy" "ExtremelyHigh")
-  ];
+{ user, ... }:
+{
+  utils.kconfig.kwinrc.content.Compositing = {
+    WindowsBlockCompositing = false;
+    LatencyPolicy = "ExtremelyHigh";
+  };
 
   system.userActivationScripts.kwinconfigoutput = {
     text = ''
