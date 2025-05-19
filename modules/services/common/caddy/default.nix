@@ -17,6 +17,7 @@ in {
     ipAddrs = [
       variables.services.caddy.cidr
     ];
+    addDefaultRoute = false;
   };
 
   utils.netns.veth.caddy2 = {
@@ -25,7 +26,6 @@ in {
     ipAddrs = [
       variables.services.caddy2.cidr
     ];
-    addDefaultRoute = false;
   };
 
   systemd.services.caddy = lib.mkIf config.utils.netns.enable {
