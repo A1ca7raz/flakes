@@ -10,6 +10,9 @@
     description = "SillyTavern";
     after = [ "network.target" ];
     wantedBy = [ "multi-user.target" ];
+    path = with pkgs; [
+      git
+    ];
     serviceConfig = {
       Type = "simple";
       ExecStartPre = [
