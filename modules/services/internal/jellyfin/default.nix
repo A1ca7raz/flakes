@@ -13,7 +13,7 @@
 
   # Shared group with media downloaders
   users.users.jellyfin.extraGroups = [ "media" ];
-  users.groups.media = {};
+  users.groups.media.gid = 900;
 
   # Create service directories by systemd
   systemd.services.jellyfin.serviceConfig = {
