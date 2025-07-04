@@ -3,6 +3,6 @@
   home.packages = with pkgs; [
     ciel
     squashfsTools # necessary dep
-    aosc-scriptlets
+    # aosc-scriptlets
   ];
 }

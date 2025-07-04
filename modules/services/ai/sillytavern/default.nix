@@ -19,7 +19,7 @@
         "${pkgs.coreutils}/bin/cp -f ${./config.yaml} /var/lib/sillytavern/config.yaml"
         "${pkgs.coreutils}/bin/chmod +w /var/lib/sillytavern/config.yaml"
       ];
-      ExecStart = "${pkgs.sillytavern-nightly}/bin/sillytavern --dataRoot /var/lib/sillytavern/data";
+      ExecStart = "${pkgs.sillytavern}/bin/sillytavern --dataRoot /var/lib/sillytavern/data";
       User = "sillytavern";
       Group = "sillytavern";
       StateDirectory = "sillytavern";
