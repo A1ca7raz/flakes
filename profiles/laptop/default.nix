@@ -25,7 +25,6 @@
     hardware.xbox
 
     (programs.desktop.exclude [
-      "messaging.matrix"
       "graphics.krita"
     ])
 
