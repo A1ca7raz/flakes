@@ -21,4 +21,8 @@
       MACHINE_LEARNING_REQUEST_THREADS = "2";
     };
   };
+
+  systemd.services.immich-server.serviceConfig.BindPaths = [
+    "/mnt/data/immich:/var/lib/immich"
+  ];
 }
