@@ -14,6 +14,8 @@ in {
     caps = [
       "CAP_NET_ADMIN"
       "CAP_NET_BIND_SERVICE"
+      "CAP_NET_RAW"
+      "CAP_SYS_PTRACE"
     ];
   in {
     description = "Mihomo networking service";
@@ -139,7 +141,7 @@ in {
   services.lighttpd = {
     enable = true;
     port = 80;
-    document-root = "${pkgs.metacubexd}";
+    document-root = "${pkgs.zashboard}";
     extraConfig = ''server.bind = "127.0.0.88"'';
   };
 
