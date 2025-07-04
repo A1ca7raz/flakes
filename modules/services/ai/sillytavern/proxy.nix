@@ -5,20 +5,9 @@ let
     domain
   ;
 in {
-  utils.netns.veth.tavern = {
-    bridge = "homelab";
-    netns = "proxy";
-    addDefaultRoute = false;
-  };
-
-  systemd.services.caddy = {
-    after = [ "netns-veth-tavern.service" ];
-    bindsTo = [ "netns-veth-tavern.service" ];
-  };
-
   systemd.services.sillytavern = {
-    after = [ "netns-veth-tavern.service" ];
-    bindsTo = [ "netns-veth-tavern.service" ];
+    after = [ "netns-veth-proxyh.service" ];
+    bindsTo = [ "netns-veth-proxyh.service" ];
     serviceConfig = {
       NetworkNamespacePath = [ "/run/netns/proxy" ];
       BindReadOnlyPaths = [ "/etc/netns/proxy/resolv.conf:/etc/resolv.conf" ];

@@ -6,14 +6,14 @@ let
   ;
 
   netnsConfig = {
-    bindsTo = [ "netns-veth-immich.service" ];
+    bindsTo = [ "netns-veth-proxyh.service" ];
     requires = [
       "redis-immich.service"
     ];
     after = [
       "postgresql.service"
       "redis-immich.service"
-      "netns-veth-immich.service"
+      "netns-veth-proxyh.service"
     ];
 
     serviceConfig.NetworkNamespacePath = [ "/run/netns/proxy" ];
@@ -24,17 +24,6 @@ let
     # };
   };
 in {
-  utils.netns.veth.immich = {
-    bridge = "homelab";
-    netns = "proxy";
-    addDefaultRoute = false;
-  };
-
-  systemd.services.caddy = {
-    after = [ "netns-veth-immich.service" ];
-    bindsTo = [ "netns-veth-immich.service" ];
-  };
-
   systemd.services.immich-server = netnsConfig;
   systemd.services.immich-machine-learning = lib.mkIf config.services.immich.machine-learning.enable netnsConfig;
 

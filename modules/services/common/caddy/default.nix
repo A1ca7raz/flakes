@@ -1,8 +1,8 @@
 { config, lib, variables, ... }:
 let
   vethServices = [
-    "netns-veth-caddy1.service"
-    "netns-veth-caddy2.service"
+    "netns-veth-proxyg.service"
+    "netns-veth-proxyh.service"
   ];
 in {
   services.caddy = {
@@ -11,7 +11,7 @@ in {
   };
 
   # Reverse proxy netns
-  utils.netns.veth.caddy1 = {
+  utils.netns.veth.proxyg = {
     bridge = "global";
     netns = "proxy";
     ipAddrs = [
@@ -20,12 +20,19 @@ in {
     addDefaultRoute = false;
   };
 
-  utils.netns.veth.caddy2 = {
+  utils.netns.veth.proxyh = {
     bridge = "homelab";
     netns = "proxy";
     ipAddrs = [
       variables.services.caddy2.cidr
     ];
+  };
+
+  environment.etc.netns-proxy-resolv = {
+    target = "netns/proxy/resolv.conf";
+    text = ''
+      nameserver 192.168.1.1
+    '';
   };
 
   systemd.services.caddy = lib.mkIf config.utils.netns.enable {

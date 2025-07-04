@@ -15,21 +15,10 @@ in {
     ];
   };
 
-  utils.netns.veth.flood = {
-    bridge = "homelab";
-    netns = "proxy";
-    addDefaultRoute = false;
-  };
-
   systemd.services.flood = {
-    after = [ "netns-veth-flood.service" ];
-    bindsTo = [ "netns-veth-flood.service" ];
+    after = [ "netns-veth-proxyh.service" ];
+    bindsTo = [ "netns-veth-proxyh.service" ];
     serviceConfig.NetworkNamespacePath = [ "/run/netns/proxy" ];
-  };
-
-  systemd.services.caddy = {
-    after = [ "netns-veth-flood.service" ];
-    bindsTo = [ "netns-veth-flood.service" ];
   };
 
   services.caddy.virtualHosts.flood = {

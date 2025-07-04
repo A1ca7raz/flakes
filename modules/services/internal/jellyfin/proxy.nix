@@ -5,20 +5,9 @@ let
     domain
   ;
 in {
-  utils.netns.veth.jellyfin = {
-    bridge = "homelab";
-    netns = "proxy";
-    addDefaultRoute = false;
-  };
-
-  systemd.services.caddy = {
-    after = [ "netns-veth-jellyfin.service" ];
-    bindsTo = [ "netns-veth-jellyfin.service" ];
-  };
-
   systemd.services.jellyfin = {
-    after = [ "netns-veth-jellyfin.service" ];
-    bindsTo = [ "netns-veth-jellyfin.service" ];
+    after = [ "netns-veth-proxyh.service" ];
+    bindsTo = [ "netns-veth-proxyh.service" ];
     serviceConfig.NetworkNamespacePath = [ "/run/netns/proxy" ];
   };
 
