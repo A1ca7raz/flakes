@@ -18,7 +18,7 @@ in {
   };
 
   fileSystems."/nix" = {
-    device = "/dev/disk/by-label/SYS";
+    device = "/dev/disk/by-partlabel/PERSIST";
     fsType = "btrfs";
     options = [ "subvol=/NIX" ] ++ tuneOptions;
   };
@@ -44,12 +44,5 @@ in {
     fsType = "btrfs";
     options = [ "subvol=/MEDIA" ] ++ tuneOptions;
     neededForBoot = true;
-  };
-
-  fileSystems."/var/lib/immich" = {
-    device = "/mnt/data/immich";
-    depends = [ "/mnt/data" ];
-    fsType = "none";
-    options = [ "bind" ];
   };
 }

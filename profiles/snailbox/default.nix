@@ -2,7 +2,7 @@
 {
   imports = [ templates.vps ];
 
-  targetHost = "192.168.1.100";
+  targetHost = "2409:8a20:442e:5400::1008";
   hostName = "oxygenbox";
   tags = with lib.tags; [
     "home"
@@ -21,11 +21,16 @@
     services.common.caddy
     services.common.knot
 
+    services.ai.sillytavern
+
     services.external.step-ca
+    services.external.alist
 
     services.internal.immich
     services.internal.jellyfin
     services.internal.torrent
+    services.internal.sharing
+    services.internal.moviepilot
 
     {
       # PostgreSQL Tune
