@@ -25,6 +25,7 @@
     hardware.xbox
 
     (programs.desktop.exclude [
+      "entertainment.maa"
       "graphics.krita"
     ])
 
