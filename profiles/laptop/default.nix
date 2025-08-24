@@ -27,14 +27,20 @@
     (programs.desktop.exclude [
       "entertainment.maa"
       "graphics.krita"
+      "graphics.gimp"
+      "development.jetbrains"
     ])
 
     (services.desktop.exclude [
       "webai"
     ])
-
+    services.ai.sillytavern
     system.kernel.xanmod
     system.security.secureboot
     # system.security.kwallet
+
+    ({ lib, ... }: {
+      systemd.services.sillytavern.wantedBy = lib.mkForce [];
+    })
   ];
 }
