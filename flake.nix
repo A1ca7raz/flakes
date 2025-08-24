@@ -83,6 +83,7 @@
           nativeBuildInputs = [
             colmena
             flameworkPackages.deploykit
+            nixos-anywhere
           ];
         };
       };
