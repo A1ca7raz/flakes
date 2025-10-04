@@ -13,5 +13,7 @@
     extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
   };
 
-  environment.systemPackages = [ pkgs.radeontop ];
+  environment.systemPackages = [
+    pkgs.nvtopPackages.amd
+  ];
 }
