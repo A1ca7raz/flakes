@@ -17,7 +17,7 @@
     jq
     whois
     wireguard-tools
-    nvtopPackages.full
+    nvtopPackages.amd   # FIXME: multiarch
   ];
 
   programs = {
