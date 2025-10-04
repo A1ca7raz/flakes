@@ -17,8 +17,7 @@
 
     hardware.amdcpu
     hardware.amdgpu
-    hardware.deep_sleep
-    hardware.logitech
+    # hardware.deep_sleep
     hardware.nvme
     hardware.printing
     hardware.tpm
@@ -29,6 +28,8 @@
       "graphics.krita"
       "graphics.gimp"
       "development.jetbrains"
+      "development.virt-manager"
+      "media.dmlive"
     ])
 
     (services.desktop.exclude [
