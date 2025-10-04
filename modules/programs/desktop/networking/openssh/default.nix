@@ -11,6 +11,7 @@
           sha256 = "sha256:1flsvq3890kl3w34n43v1wpq8f79la2x885w4mmsdkjw9wqfl8i2";
         })
       ];
+      enableDefaultConfig = false;
 
       matchBlocks = {
         gh = {
