@@ -1,7 +1,7 @@
 {
   nixosModule = { user, lib, pkgs, ... }:
     with lib; let
-      s = x: ./fcitx5_config/${x};
+      s = x: ./config/${x};
       t = x: ".config/fcitx5/" + x;
       mkst = x: {
         source = s x;
@@ -19,7 +19,6 @@
           fcitx5-pinyin-zhwiki
           fcitx5-pinyin-moegirl
         ];
-        fcitx5.plasma6Support = true;
       };
 
       environment.persistence = mkPersistDirsTree user [
