@@ -7,7 +7,6 @@
   ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usbhid" "usb_storage" "rtsx_pci_sdmmc" ];
-  boot.kernelModules = [ "kvm-amd" ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "ondemand";
 }
