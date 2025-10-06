@@ -17,14 +17,16 @@ in {
       Type = "oneshot";
       User = "nobody";
       Group = "systemd-journal";
-      ExecStart = builtins.concatStringsSep " " [
-        ''${pkgs.curl}/bin/curl''
-        ''-6 "https://dyn.dns.he.net/nic/update"''
-        ''-d "hostname=$DDNS_HOSTNAME"''
-        ''-d "password=$DDNS_SECRET"''
-      ];
+
       EnvironmentFile = config.sops.templates."ddns.env".path;
     };
+
+    script = builtins.concatStringsSep " " [
+      ''${pkgs.curl}/bin/curl''
+      ''-6 "https://dyn.dns.he.net/nic/update"''
+      ''-d "hostname=$DDNS_HOSTNAME"''
+      ''-d "password=$DDNS_SECRET"''
+    ];
   };
 
   systemd.timers.heddns = {
