@@ -1,5 +1,10 @@
 { config, lib, ... }:
-{
+let
+  inherit (lib)
+    optionalAttrs
+    tags
+  ;
+in {
   systemd.network.enable = true;
   services.resolved.enable = true;  # Required by DNS from DHCP
   networking.resolvconf.enable = false;
@@ -7,6 +12,9 @@
   systemd.network.networks.default =  {
     DHCP = "yes";
     matchConfig.Name = "eth0";
-    networkConfig.IPv4Forwarding = lib.optionalAttrs config.utils.netns.enable "yes";
+    networkConfig =
+      optionalAttrs config.utils.netns.enable { IPv4Forwarding = "yes"; } //
+      optionalAttrs (tags ? server) { IPv6PrivacyExtensions = "no"; };
+    ipv6AcceptRAConfig.Token = "eui64";
   };
 }
