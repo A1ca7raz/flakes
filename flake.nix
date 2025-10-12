@@ -39,6 +39,7 @@
           extraSpecialArgs = {
             inherit (inputs.nix-secrets) variables secrets;
             zones = inputs.nix-secrets.zones { inherit dns lib; };
+            std = inputs.pkgs.lib;
           };
         };
         packages.pkgsPath = ./pkgs;
@@ -53,6 +54,7 @@
           lanzaboote = lanzaboote;
           nix-index = nix-index-database;
           sops = sops;
+          disko = disko;
 
           nur = { ... }: {
             imports = [
