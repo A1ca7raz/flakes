@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 {
   imports = [
     ./proxy.nix
@@ -25,4 +25,11 @@
   systemd.services.immich-server.serviceConfig.BindPaths = [
     "/mnt/data/immich:/var/lib/immich"
   ];
+
+  systemd.tmpfiles.settings.immich = {
+    "/mnt/data/immich".d = {
+      mode = "0770";
+      inherit (config.services.immich) user group;
+    };
+  };
 }
