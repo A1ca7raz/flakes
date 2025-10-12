@@ -2,7 +2,7 @@
 {
   imports = [ templates.vps ];
 
-  targetHost = "2409:8a20:442e:5400::1008";
+  targetHost = "192.168.1.100";
   hostName = "oxygenbox";
   tags = with lib.tags; [
     "home"
@@ -24,8 +24,9 @@
     services.ai.sillytavern
 
     services.external.step-ca
-    services.external.alist
+    # services.external.alist
 
+    services.internal.heddns
     services.internal.immich
     services.internal.jellyfin
     services.internal.torrent
