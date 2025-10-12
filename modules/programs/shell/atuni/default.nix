@@ -9,15 +9,15 @@
       settings = import ./config.nix;
     in {
       programs.fish.interactiveShellInit = ''
-        # bind UP on TTY mode
-        bind up _atuin_bind_up
-        bind \eOA _atuin_bind_up
-        bind -M insert up _atuin_bind_up
-        bind -M insert \eOA _atuin_bind_up
-
-        # bind Ctrl+UP on PTS mode
-        bind \e\[1\;5A _atuin_bind_up
-        bind -M insert \e\[1\;5A _atuin_bind_up
+        if test "$TERM" = "linux"
+          # bind UP on TTY mode
+          bind up _atuin_bind_up
+          bind -M insert up _atuin_bind_up
+        else
+          # bind Ctrl+UP on PTS mode
+          bind ctrl-up _atuin_bind_up
+          bind -M insert ctrl-up _atuin_bind_up
+        end
       '';
 
       programs.atuin = {
