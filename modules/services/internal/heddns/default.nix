@@ -33,6 +33,7 @@ in {
     description = "Hurricane Electric DDNS Updater Hourly Cron Job";
     wants = [ "network-online.target" ];
     after = [ "network-online.target" ];
+    wantedBy = [ "multi-user.target" ];
 
     timerConfig = {
       OnCalendar = "*-*-* *:20:04";
