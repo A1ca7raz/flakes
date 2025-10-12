@@ -8,6 +8,7 @@
   modules = with self.modules; [
     nix.settings
 
+    programs.server
     programs.shell.fish
     programs.shell.misc
 
