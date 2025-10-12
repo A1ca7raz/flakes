@@ -9,8 +9,8 @@
   };
 
   hardware.graphics = {
-    extraPackages = [ pkgs.amdvlk ];
-    extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+    enable = true;
+    enable32Bit = true;
   };
 
   environment.systemPackages = [

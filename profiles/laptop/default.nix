@@ -17,6 +17,7 @@
 
     hardware.amdcpu
     hardware.amdgpu
+    hardware.touchpad
     # hardware.deep_sleep
     hardware.nvme
     hardware.printing

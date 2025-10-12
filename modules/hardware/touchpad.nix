@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   services.libinput = {
     enable = true;
@@ -9,8 +9,4 @@
       tappingDragLock = false;
     };
   };
-
-  # hardware.steam-hardware.enable = true;
-
-  hardware.graphics.enable = true;
 }
