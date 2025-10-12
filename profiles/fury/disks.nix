@@ -1,4 +1,4 @@
-{ ... }:
+{ self, ... }:
 let
   dataPartitionMountOptions = [
     "compress=zstd"
@@ -6,9 +6,13 @@ let
     "nodiratime"
   ];
 in {
+  imports = [
+    self.nixosModules.disko
+  ];
+
   disko.devices.disk.main = {
     type = "disk";
-    device = "/dev/sda";
+    device = "/dev/disk/by-id/ata-Phison_SATA_SSD_64FC0795129E00079248";
     content = {
       type = "gpt";
       partitions = {
@@ -35,7 +39,10 @@ in {
                 mountOptions = dataPartitionMountOptions;
                 mountpoint = "/nix";
               };
-              "/nix/persist".mountOptions = dataPartitionMountOptions;
+              "/nix/persist" = {
+                mountOptions = dataPartitionMountOptions;
+                mountpoint = "/nix/persist";
+              };
             };
           };
         };
@@ -52,13 +59,16 @@ in {
   };
 
   disko.devices.disk.data = {
-    type = "btrfs";
-    device = "/dev/sdb";
-    extraArgs = [ "-f" ];
-    subvolumes = {
-      DATA = {
-        mountOptions = dataPartitionMountOptions;
-        mountpoint = "/mnt/data";
+    type = "disk";
+    device = "/dev/disk/by-id/ata-ST4000VX000-2AG166_ZDHAAYRB";
+    content = {
+      type = "btrfs";
+      extraArgs = [ "-f" ];
+      subvolumes = {
+        DATA = {
+          mountOptions = dataPartitionMountOptions;
+          mountpoint = "/mnt/data";
+        };
       };
     };
   };
@@ -73,4 +83,6 @@ in {
       "nodev"
     ];
   };
+
+  fileSystems."/nix/persist".neededForBoot = true;
 }
