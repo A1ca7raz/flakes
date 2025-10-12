@@ -31,6 +31,7 @@
       "development.jetbrains"
       "development.virt-manager"
       "media.dmlive"
+      "browsers.thunderbird"
     ])
 
     (services.desktop.exclude [
