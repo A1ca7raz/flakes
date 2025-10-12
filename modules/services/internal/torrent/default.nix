@@ -43,4 +43,6 @@
     description = "User of Torrent Downloaders";
     isSystemUser = true;
   };
+
+  users.groups.media.gid = lib.mkDefault 900;
 }
