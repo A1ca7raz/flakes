@@ -29,10 +29,10 @@
 
     services.internal.heddns
     services.internal.immich
-    # services.internal.jellyfin
+    services.internal.jellyfin
     services.internal.torrent
-    # services.internal.sharing
-    # services.internal.moviepilot
+    services.internal.sharing
+    services.internal.moviepilot
 
     {
       # PostgreSQL Tune
@@ -70,6 +70,8 @@
         homelab.ipAddrs = variables.vnet.homelab;
         global.ipAddrs = variables.vnet.global;
       };
+
+      services.immich.machine-learning.enable = false;  # Broken
     }
   ];
 }

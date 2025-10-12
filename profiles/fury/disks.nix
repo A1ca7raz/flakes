@@ -69,6 +69,10 @@ in {
           mountOptions = dataPartitionMountOptions;
           mountpoint = "/mnt/data";
         };
+        MEDIA = {
+          mountOptions = dataPartitionMountOptions;
+          mountpoint = "/mnt/media";
+        };
       };
     };
   };
