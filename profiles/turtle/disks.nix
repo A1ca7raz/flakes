@@ -67,7 +67,7 @@ in {
     fsType = "tmpfs";
     mountOptions = [
       "defaults"
-      "size=2G"
+      "size=500M"
       "mode=755"
       "nosuid"
       "nodev"
