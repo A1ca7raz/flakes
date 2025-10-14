@@ -21,9 +21,6 @@
   # Service Harden
   systemd.services.sing-box.serviceConfig = {
     DynamicUser = "yes";
-    # Capabilities
-    # CapabilityBoundingSet = [ "CAP_NET_BIND_SERVICE" ];
-    # AmbientCapabilities = [ "CAP_NET_BIND_SERVICE" ];
     # Proc filesystem
     ProcSubset = "pid";
     ProtectProc = "invisible";
