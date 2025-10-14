@@ -7,6 +7,7 @@ let
 in {
   utils.secrets = {
     "inbounds/hysteria2/port" = enc_singbox;
+    "inbounds/hysteria2/hopping_ports" = enc_singbox;
     "inbounds/hysteria2/secrets" = enc_singbox;
     "host/proxy/sni" = enc_host;
     "host/proxy/email" = enc_host;
@@ -15,7 +16,7 @@ in {
   services.sing-box.settings.inbounds = [
     {
       type = "hysteria2";
-      bind_interface = "eth0";
+      listen  = "::";
       listen_port = dec "inbounds/hysteria2/port" // { quote = false; };  # Integer
       users = dec "inbounds/hysteria2/secrets" // { quote = false; };     # Array
       tls = {
@@ -29,4 +30,20 @@ in {
       };
     }
   ];
+
+  sops.templates.hysteria2-porthopping.content = ''
+    chain prerouting {
+      type nat hook prerouting priority dstnat; policy accept;
+      iifname eth0 udp dport ${config.sops.placeholder."inbounds/hysteria2/hopping_ports"} counter redirect to :${config.sops.placeholder."inbounds/hysteria2/port"}
+    }
+  '';
+
+  networking.nftables.tables.hysteria2-porthopping = {
+    family = "inet";
+    content = ''
+      include "${config.sops.templates.hysteria2-porthopping.path}"
+    '';
+  };
+
+  networking.nftables.checkRuleset = false;
 }
