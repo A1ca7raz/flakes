@@ -13,8 +13,7 @@
 
     system.bootloader.legacy.grub
     system.kernel.xanmod
-    system.network.systemd-static
 
-    # services.external.sing-box
+    services.external.sing-box
   ];
 }
