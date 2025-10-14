@@ -9,6 +9,8 @@
   ];
 
   modules = with self.modules; [
+    hardware.qemu
+
     system.bootloader.legacy.grub
     system.kernel.xanmod
 
