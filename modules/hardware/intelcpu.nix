@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ ... }:
 {
   boot.kernelParams = [
     "intel_iommu=on"
@@ -8,5 +8,5 @@
 
   hardware.cpu.intel.updateMicrocode = true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  nixpkgs.hostPlatform = "x86_64-linux";
 }
