@@ -1,8 +1,10 @@
-{ modulesPath, ... }:
+{ modulesPath, lib, ... }:
 {
-  imports = [ (modulesPath + "/profiles/qemu-guest.nix") ];
+  imports = [
+    (modulesPath + "/profiles/qemu-guest.nix")
+  ];
 
   services.qemuGuest.enable = true;
 
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "virtio_pci" "virtio_blk" ];
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
 }
