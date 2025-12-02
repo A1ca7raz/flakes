@@ -49,7 +49,7 @@
       User = "moviepilot";
       Group = "media";
       UMask = "0002";
-      TimeoutStopSec = 1800;
+      TimeoutStopSec = 60;
 
       ExecStart = "${pkgs.moviepilot}/bin/moviepilot";
 
