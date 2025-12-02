@@ -11,7 +11,7 @@ in {
 
   systemd.network.networks.default =  {
     DHCP = "yes";
-    matchConfig.Name = "eth0";
+    matchConfig.Name = lib.mkDefault "eth0";
     networkConfig =
       optionalAttrs config.utils.netns.enable { IPv4Forwarding = "yes"; } //
       optionalAttrs (tags ? server) { IPv6PrivacyExtensions = "no"; };

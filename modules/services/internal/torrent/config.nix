@@ -1,23 +1,32 @@
 { config, lib, ... }:
-{
+let
+  cfg = config.systemd.services.qbittorrent;
+
+  iface = config.systemd.network.networks.default.matchConfig.Name;
+  user = cfg.serviceConfig.User;
+  group = cfg.serviceConfig.Group;
+  mediaDir = "/mnt/media";
+  saveDir = "${mediaDir}/Download";
+  torrentDir = "${mediaDir}/Torrents";
+in {
   utils.kconfig.qbittorrent.content = {
     Core.AutoDeleteAddedTorrentFile = "IfAdded";
     LegalNotice.Accepted = true;
 
     BitTorrent = {
-      "Session\\DefaultSavePath" = "/mnt/media/Downloads";
+      "Session\\DefaultSavePath" = saveDir;
       "Session\\DisableAutoTMMByDefault" = false;
       "Session\\ExcludedFileNames" = "";
-      "Session\\FinishedTorrentExportDirectory" = "/mnt/media/Torrents/.completed";
+      "Session\\FinishedTorrentExportDirectory" = "${torrentDir}/.completed";
       "Session\\GlobalMaxRatio" = 15;
       "Session\\IgnoreLimitsOnLAN" = true;
-      "Session\\Interface" = "eth0";
-      "Session\\InterfaceName" = "eth0";
+      "Session\\Interface" = iface;
+      "Session\\InterfaceName" = iface;
       "Session\\PerformanceWarning" = true;
       "Session\\Port" = 63003;
       "Session\\QueueingSystemEnabled" = false;
       "Session\\SSL\\Port" = 47733;
-      "Session\\TempPath" = "/mnt/media/.downloading";
+      "Session\\TempPath" = "${saveDir}/.downloading";
       "Session\\TempPathEnabled" = true;
       "Session\\uTPRateLimited" = false;
     };
@@ -30,6 +39,17 @@
       "WebUI\\AuthSubnetWhitelistEnabled" = true;
       "WebUI\\LocalHostAuth" = false;
       "WebUI\\Port" = 8082;
+    };
+  };
+
+  systemd.tmpfiles.settings.torrent-downloading = {
+    "${saveDir}".d = {
+      mode = "0775";
+      inherit user group;
+    };
+    "${torrentDir}".d = {
+      mode = "0775";
+      inherit user group;
     };
   };
 
