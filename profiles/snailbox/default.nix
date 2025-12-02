@@ -2,8 +2,8 @@
 {
   imports = [ templates.vps ];
 
-  targetHost = "192.168.1.100";
-  hostName = "oxygenbox";
+  targetHost = "redacted";
+  hostName = "snailbox";
   tags = with lib.tags; [
     "home"
     private
@@ -30,7 +30,7 @@
     services.internal.immich
     services.internal.jellyfin
     services.internal.torrent
-    services.internal.sharing
+    services.internal.sharing.nfs
     services.internal.moviepilot
 
     {

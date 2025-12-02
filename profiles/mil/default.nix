@@ -2,7 +2,7 @@
 {
   imports = [ templates.vps ];
 
-  targetHost = "redact";
+  targetHost = "redacted";
   hostName = "mil";
   tags = with lib.tags; [
     public
