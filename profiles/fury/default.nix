@@ -17,6 +17,9 @@
     hardware.intelgpu
     hardware.nvme
     hardware.tpm
+    hardware.cx
+
+    nix.mirrors
 
     system.network.netns
     system.bootloader.efi.systemd
@@ -33,6 +36,10 @@
     services.internal.torrent
     services.internal.sharing
     services.internal.moviepilot
+
+    services.ai.sillytavern
+
+    services.external.step-ca
 
     {
       # PostgreSQL Tune
@@ -72,6 +79,8 @@
       };
 
       services.immich.machine-learning.enable = false;  # Broken
+
+      systemd.network.networks.default.matchConfig.Name = "eth1"; # use external nic
     }
   ];
 }

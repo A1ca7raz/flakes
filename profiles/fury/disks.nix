@@ -77,6 +77,19 @@ in {
     };
   };
 
+  disko.devices.disk.data_hs = {
+    type = "disk";
+    device = "/dev/nvme0n1";
+    content = {
+      type = "btrfs";
+      extraArgs = [ "-f" ];
+      subvolumes.DATA_HS = {
+        mountOptions = dataPartitionMountOptions;
+        mountpoint = "/mnt/media_hs";
+      };
+    };
+  };
+
   disko.devices.nodev."/" = {
     fsType = "tmpfs";
     mountOptions = [
