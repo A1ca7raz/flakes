@@ -4,6 +4,8 @@ let
     ip
     domain
   ;
+
+  listenPort = 5526;
 in {
   systemd.services.sillytavern = {
     after = [ "netns-veth-proxyh.service" ];
@@ -14,13 +16,15 @@ in {
     };
   };
 
+  services.sillytavern.port = listenPort;
+
   services.caddy.virtualHosts.sillytavern = {
     hostName = domain;
     listenAddresses = [ ip ];
     serverAliases = [];
 
     extraConfig = ''
-      reverse_proxy http://127.0.0.1:8163 {
+      reverse_proxy http://127.0.0.1:${toString listenPort} {
         # FIXME: delete forward header until account system deployed
         header_up -X-Forwarded-For
         # header_up X-Real-IP {remote}
