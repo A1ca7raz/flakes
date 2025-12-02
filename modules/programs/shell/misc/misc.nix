@@ -9,7 +9,6 @@
     lsof
     fastfetch
     nmap
-    openssl-ykcs
     tcpdump
     usbutils
     vim

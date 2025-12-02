@@ -13,6 +13,7 @@
       flameworkPackages.desktop-toolkit
 
       deskflow
+      openssl-ykcs
     ];
   };
 
