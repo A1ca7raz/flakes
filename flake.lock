@@ -195,11 +195,11 @@
     },
     "flamework": {
       "locked": {
-        "lastModified": 1747580463,
-        "narHash": "sha256-pIyIYnoYur9ZWAFflkn24WLtv68V7NFy4P4brTHPink=",
+        "lastModified": 1764693074,
+        "narHash": "sha256-5JrJ9BMOrnweNatFjGAL8ZfVO/ViGTxjjq67pZAnvJ8=",
         "owner": "A1ca7raz",
         "repo": "flamework",
-        "rev": "c40654e6345f6f14a667ab91481d4ca6dcace60c",
+        "rev": "e6572282e8c2c9f15fd79167d2c4d4d96403769d",
         "type": "github"
       },
       "original": {
@@ -487,10 +487,10 @@
     },
     "nix-secrets": {
       "locked": {
-        "lastModified": 1762966137,
-        "narHash": "sha256-7yWQLT4wjsdnhE3LZ2f/ZY7/V+vZ7dVp3ZY8DMy5ERA=",
+        "lastModified": 1764693683,
+        "narHash": "sha256-wW6m93foxXpRlij5hGG4Bapcjo77maa1hMcqyysxmzQ=",
         "ref": "refs/heads/main",
-        "rev": "250417bc8932580630da759c93ddcfef7d2d447c",
+        "rev": "494d3bc0cb421df2c4f02188fe62ec5e8c776130",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/A1ca7raz/nix-secrets"
