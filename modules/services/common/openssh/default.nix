@@ -1,5 +1,11 @@
 { lib, const, ... }:
-{
+let
+  inherit (lib)
+    optionals
+    tags
+    mkOverride
+  ;
+in {
   services.openssh = {
     enable = true;
     settings = {
@@ -20,4 +26,6 @@
   #   target = "ssh/trusted_user_ca";
   #   text = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIImEnstzrNsASzPhILySuXHjeyA84Hv0U1ini3w/4JBn";
   # };
+
+  systemd.services.sshd.wantedBy = optionals (tags ? desktop) (mkOverride 800 []);
 }

@@ -34,6 +34,8 @@
       "browsers.thunderbird"
     ])
 
+    services.common.openssh
+
     (services.desktop.exclude [
       "webai"
     ])
