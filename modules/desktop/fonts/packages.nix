@@ -9,7 +9,6 @@
     noto-fonts-cjk-sans
     noto-fonts-cjk-serif
     noto-fonts-emoji-blob-bin
-    noto-fonts-extra
     sarasa-gothic
     source-code-pro
     source-han-mono
