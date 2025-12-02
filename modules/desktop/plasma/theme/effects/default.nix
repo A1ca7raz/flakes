@@ -19,7 +19,6 @@
         BlurMatching = false;
         BlurNonMatching = true;
         BlurStrength = 8;
-        FakeBlur = true;
         PaintAsTranslucent = true;
         TransparentBlur = false;
         WindowClasses = "";
