@@ -10,7 +10,7 @@ in {
     enable = true;
     settings = {
       PasswordAuthentication = false;
-      PermitRootLogin = if lib.utils.isServer then "prohibit-password" else "no";
+      PermitRootLogin = "prohibit-password";
     };
     ports = [ const.port.ssh ];
     hostKeys = [
