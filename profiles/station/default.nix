@@ -6,6 +6,7 @@
   targetPort = 48422;
   targetUser = "nomad";
   hostName = "oxygenstation";
+  deployAsRoot = true;
 
   tags = with lib.tags; [
     local internal private physical

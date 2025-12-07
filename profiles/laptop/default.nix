@@ -6,6 +6,7 @@
   targetPort = 22;
   targetUser = "nomad";
   hostName = "oxygenlaptop";
+  deployAsRoot = true;
 
   tags = with lib.tags; [
     local internal private physical
@@ -39,13 +40,8 @@
     (services.desktop.exclude [
       "webai"
     ])
-    services.ai.sillytavern
     system.kernel.xanmod
     system.security.secureboot
     # system.security.kwallet
-
-    ({ lib, ... }: {
-      systemd.services.sillytavern.wantedBy = lib.mkForce [];
-    })
   ];
 }
