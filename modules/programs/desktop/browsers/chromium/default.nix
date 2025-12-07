@@ -7,10 +7,38 @@
   homeModule = { pkgs, ... }: {
     programs.chromium = {
       enable = true;
-      package = pkgs.ungoogled-chromium-drm;
+      package = pkgs.ungoogled-chromium;
       nativeMessagingHosts = [
         pkgs.kdePackages.plasma-browser-integration
       ];
+
+#       commandLineArgs = [
+#         "--ozone-platform-hint=auto"  # Touchpad Gestures for Navigation
+#
+#         # Accelerated video playback
+#         "--ignore-gpu-blocklist"
+#         "--enable-zero-copy"
+#
+#         ("--enable-features=" +
+#           builtins.concatStringsSep "," [
+#             "TouchpadOverscrollHistoryNavigation" # Touchpad Gestures for Navigation
+#
+#             # Accelerated video playback
+#             "VaapiVideoDecoder"
+#             "AcceleratedVideoEncoder"
+#             "VaapiOnNvidiaGPUs"
+#             "VaapiIgnoreDriverChecks"
+#             "PlatformHEVCDecoderSupport"
+#             "UseMultiPlaneFormatForHardwareVideo"
+#
+#             "Vulkan,DefaultANGLEVulkan,VulkanFromANGLE" # Vulkan
+#           ]
+#         )
+#
+#         # Disable popup shortcut setting window
+#         "--disable-features=GlobalShortcutsPortal"
+#       ];
+
       # NOTE: extensions does not work for ungoogled-chromium
     };
 
