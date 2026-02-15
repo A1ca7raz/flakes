@@ -1,8 +1,7 @@
 { home, pkgs, ... }:
 with pkgs; let
-  mpvPackage = mpv-unwrapped.wrapper {
+  mpvPackage = mpv.override {
     # mpv = mpv-unwrapped-vapoursynth;
-    mpv = mpv-unwrapped;
     scripts = with mpvScripts; [
       mpris                 # Mpris
       thumbfast             # On-the-fly Thumbnail

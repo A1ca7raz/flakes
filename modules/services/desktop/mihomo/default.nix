@@ -141,7 +141,7 @@ in {
   services.lighttpd = {
     enable = true;
     port = 80;
-    document-root = "${pkgs.zashboard}";
+    document-root = "${pkgs.zashboard-final}";
     extraConfig = ''server.bind = "127.0.0.88"'';
   };
 
