@@ -1,11 +1,10 @@
 { lib, user, config, ... }:
 let
-  inherit (lib) mkOverlayTree c;
+  inherit (lib)
+    mkOverlayTree
+    c
+  ;
 in {
-  imports = [
-    ./module
-  ];
-
   environment.overlay = mkOverlayTree user {
     desktop-appletsrc = {
       source = config.utils.kconfig.appletsrc.path;

@@ -91,22 +91,30 @@ rec {
     config.General = {
       albumCoverRadius = "25";
       choosePlayerAutomatically = "false";
+      colorsFromAlbumCover = "true";
       commandsInPanel = "false";
       fallbackToIconWhenArtNotAvailable = "true";
       maxSongWidthInPanel = "180";
+      mediaProgressInPanel = "true";
+      panelBackgroundRadius = "25";
+      playPauseControlInPanel = "false";
       preferredPlayerIdentity = "Spotify";
+      skipBackwardControlInPanel = "false";
+      skipForwardControlInPanel = "false";
       textScrollingBehaviour = "2";
+      textScrollingResetOnPause = "true";
       textScrollingSpeed = "2";
       useAlbumCoverAsPanelIcon = "true";
     };
   };
 
   betterWindowTitle = {
-    plugin = "plasma6-window-title-applet";
+    plugin = "org.kde.windowtitle";
     config = {
       Appearance = {
-        altTxt = "";
-        fillThickness = "true";
+        activityIcon = "false";
+        altTxt = "Workspace";
+        customIcon = "activities";
         fixedLength = "200";
         fontSize = "13";
         isBold = "true";
@@ -160,5 +168,9 @@ rec {
         ];
       };
     };
+  };
+
+  colorizer = {
+    plugin = "luisbocanegra.panel.colorizer";
   };
 }

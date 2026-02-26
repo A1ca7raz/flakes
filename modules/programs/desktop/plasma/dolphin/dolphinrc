@@ -11,6 +11,7 @@ GlobalViewProps=false
 OpenExternallyCalledFolderInNewTab=false
 RememberOpenedTabs=false
 ShowFullPath=true
+ShowStatusBar=FullWidth
 ShowToolTips=true
 ShowZoomSlider=false
 

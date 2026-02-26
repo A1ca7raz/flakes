@@ -1,11 +1,8 @@
 {
-  nixosModule = { config, ... }:
-    let
-      inherit (config.lib.theme) PlasmaTheme;
-    in {
-      utils.kconfig.plasmarc.content.Theme.name = PlasmaTheme;
-      utils.kconfig.ksplashrc.content.KSplash.Theme = "Arch-Splash";
-    };
+  nixosModule = { config, ... }: {
+    utils.kconfig.plasmarc.content.Theme.name = "light";
+    utils.kconfig.ksplashrc.content.KSplash.Theme = "splash";
+  };
 
   homeModule = { pkgs, ... }: {
     home.sessionVariables.GTK_USE_PORTAL = "1";

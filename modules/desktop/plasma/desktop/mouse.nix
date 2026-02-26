@@ -1,46 +1,51 @@
-{ lib, ... }:
+{ ... }:
 let
-  inherit (lib)
-    mkItem
-    convertItemsToKconfig
-  ;
+  _ = "ActionPlugins/0";
+  _btn = x: "${x}Button;NoModifier";
 
-  btn = x: mkItem ["ActionPlugins" "0"] "${x}Button;NoModifier";
-  btn_ = x: mkItem ["ActionPlugins" "0" "${x}Button;NoModifier"];
-  btnR = btn_ "Right";
+  btnBack = _btn "Back";
+  btnFwd = _btn "Forward";
+  btnMid = _btn "Middle";
+  btnRight = _btn "Right";
 in {
-  utils.kconfig.appletsrc.content = convertItemsToKconfig [
-    # Common
-    (btn "Back" "org.kde.switchdesktop")
-    (btn "Forward" "switchwindow")
-    (btn "Middle" "org.kde.applauncher")
-    (btn "Right" "org.kde.contextmenu")
+  utils.kconfig.appletsrc.content = {
+    # Button Functions
+    "${_}" = {
+      "${btnBack}" = "org.kde.switchdesktop";
+      "${btnFwd}" = "switchwindow";
+      "${btnMid}" = "org.kde.applauncher";
+      "${btnRight}" = "org.kde.contextmenu";
+    };
 
-    # Other Buttons
-    (btn_ "Back" "showAppsByName" "true")
-    (btn_ "Forward" "mode" "2")
-    (btn_ "Middle" "showAppsByName" "false")
+    # Back Button Options
+    "${_}/${btnBack}".showAppsByName = true;
 
-    # Right Button
-    (btnR "_add panel" "false")
-    (btnR "_context" "true")
-    (btnR "_display_settings" "true")
-    (btnR "_lock_screen" "true")
-    (btnR "_logout" "true")
-    (btnR "_open_terminal" "true")
-    (btnR "_run_command" "false")
-    (btnR "_sep1" "true")
-    (btnR "_sep2" "true")
-    (btnR "_sep3" "false")
-    (btnR "_wallpaper" "true")
-    (btnR "add widgets" "false")
-    (btnR "configure" "true")
-    (btnR "configure shortcuts" "false")
-    (btnR "edit mode" "true")
-    (btnR "manage activities" "false")
-    (btnR "remove" "true")
-    (btnR "run associated application" "false")
+    # Forward Button Options
+    "${_}/${btnFwd}".mode = 2;
 
-    (mkItem ["ActionPlugins" "1"] "RightButton;NoModifier" "org.kde.contextmenu")
-  ];
+    # Middle Button Options
+    "${_}/${btnMid}".showAppsByName = false;
+
+    # Right Button Options
+    "${_}/${btnRight}" = {
+      "_add panel" = false;
+      "_context" = true;
+      "_display_settings" = true;
+      "_lock_screen" = true;
+      "_logout" = true;
+      "_open_terminal" = true;
+      "_run_command" = false;
+      "_sep1" = true;
+      "_sep2" = true;
+      "_sep3" = false;
+      "_wallpaper" = true;
+      "add widgets" = false;
+      "configure" = true;
+      "configure shortcuts" = false;
+      "edit mode" = true;
+      "manage activities" = false;
+      "remove" = true;
+      "run associated application" = false;
+    };
+  };
 }

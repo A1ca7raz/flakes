@@ -1,19 +1,12 @@
 {
-  nixosModule = { config, user, lib, ... }:
-    with lib; let
-      inherit (config.lib.theme) KvantumTheme;
-    in {
-      utils.kconfig.kvconfig.content.General.theme = KvantumTheme;
+  nixosModule = { config, user, lib, ... }: {
+      utils.kconfig.kvconfig.content.General.theme = "A1ca7raz-Light";
       utils.kconfig.kdeglobals.content.KDE.widgetStyle = "kvantum";
 
-      # Persistence
-      environment.persistence = mkPersistDirsTree user [
-        (c "Kvantum")
-      ];
-      environment.overlay = mkOverlayTree user {
+      environment.overlay = lib.mkOverlayTree user {
         kvconfig = {
           source = config.utils.kconfig.kvconfig.path;
-          target = c "Kvantum/kvantum.kvconfig";
+          target = lib.c "Kvantum/kvantum.kvconfig";
         };
       };
     };
@@ -21,7 +14,6 @@
   homeModule = { pkgs, ... }: {
     home.packages = with pkgs; [
       kdePackages.qtstyleplugin-kvantum
-      libsForQt5.qtstyleplugin-kvantum  # For Qt5 Applications
     ];
   };
 }

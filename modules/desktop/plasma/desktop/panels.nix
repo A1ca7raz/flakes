@@ -10,7 +10,11 @@ let
   dockApplets = import ./applets/dock.nix;
 
   # wrapColorizer = ;
-  wrapDock = id: lastScreen: appletBaseId: mkDock {
+  wrapDock = {
+    id,
+    lastScreen,
+    appletBaseId
+  }: mkDock {
     inherit id lastScreen appletBaseId;
 
     config = {
@@ -32,7 +36,13 @@ let
     ];
   };
 
-  wrapTopbar = id: lastScreen: appletBaseId: trayId: spacerLen: mkTopbar {
+  wrapTopbar = {
+    id,
+    lastScreen,
+    appletBaseId,
+    trayId,
+    spacerLen
+  }: mkTopbar {
     inherit id lastScreen appletBaseId;
 
     config = {
@@ -49,22 +59,21 @@ let
       windowButtons
       betterWindowTitle
       windowAppMenu
-      (space spacerLen)
       spacerExtended
-      (space spacerLen)
+      colorizer
       digitalClock
-      (space spacerLen)
       spacerExtended
       plasmusicToolbar
-      space5
       (systemTray trayId)
-      space5
       kara
       lockLogout
     ];
   };
 
-  wrapTray = mkTray {
+  wrapTray = {
+    id,
+    lastScreen
+  }: mkTray {
     General = {
       hiddenItems = builtins.concatStringsSep "," [
         "Xwayland 视频桥接程序_pipewireToXProxy"
@@ -74,22 +83,49 @@ let
         "org.kde.kscreen"
         "org.kde.kdeconnect"
         "org.kde.plasma.clipboard"
+        "Easy Effects"
       ];
       scaleIconsToFit = true;
     };
-  };
+  } id lastScreen;
 in {
   utils.plasma.monitors = {
     main.panels = {
-      topbar = wrapTopbar 12 0 100 14 26;
-      dock = wrapDock 13 0 200;
-      tray = wrapTray 14 0;
+      topbar = wrapTopbar {
+        id = 12;
+        lastScreen = 0;
+        appletBaseId = 100;
+        trayId = 14;
+        spacerLen = 26;
+      };
+      dock = wrapDock {
+        id = 13;
+        lastScreen = 0;
+        appletBaseId = 200;
+      };
+      tray = wrapTray {
+        id = 14;
+        lastScreen = 0;
+      };
     };
 
     secondary.panels = {
-      topbar = wrapTopbar 22 1 300 24 22;
-      dock = wrapDock 23 1 400;
-      tray = wrapTray 24 1;
+      topbar = wrapTopbar {
+        id = 22;
+        lastScreen = 1;
+        appletBaseId = 300;
+        trayId = 24;
+        spacerLen = 22;
+      };
+      dock = wrapDock {
+        id = 23;
+        lastScreen = 1;
+        appletBaseId = 400;
+      };
+      tray = wrapTray {
+        id = 24;
+        lastScreen = 1;
+      };
     };
   };
 }

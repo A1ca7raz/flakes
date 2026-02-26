@@ -9,14 +9,13 @@
           UseAtomicSaves=false
 
           [Browser]
-          CustomProxyLocation=
           Enabled=true
 
           [GUI]
+          ApplicationTheme=auto
           Language=zh_CN
           MinimizeOnClose=true
           MinimizeToTray=true
-          ApplicationTheme=classic
           MonospaceNotes=true
           ShowTrayIcon=true
           TrayIconAppearance=monochrome-light

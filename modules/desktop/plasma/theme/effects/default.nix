@@ -92,6 +92,7 @@
     home.packages = with pkgs; [
       kwin-effects-forceblur
       kwin-effects-geometry-change
+      kwin-effects-dynamic-workspaces
     ];
   };
 }
