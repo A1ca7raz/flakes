@@ -1,0 +1,24 @@
+input {
+    keyboard {
+        xkb {
+        }
+
+        numlock
+    }
+
+    touchpad {
+        tap
+        drag true
+        natural-scroll
+        middle-emulation
+        click-method "clickfinger"
+        scroll-method "two-finger"
+    }
+
+    mouse {
+        accel-profile "flat"
+    }
+
+    trackpoint {
+    }
+}

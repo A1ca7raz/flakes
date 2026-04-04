@@ -1,0 +1,49 @@
+window-rule {
+  background-effect {
+    xray true
+    blur true
+  }
+
+  // 圆角
+  geometry-corner-radius 10
+  // 剪掉圆角外的窗口内容
+  clip-to-geometry true
+  // 禁止边框画到窗口后面
+  draw-border-with-background false
+}
+
+/* Ayugram Media */
+window-rule {
+  match app-id="com.ayugram.desktop" title="媒体查看器"
+  open-floating true
+}
+
+// 浮动窗口禁用xray，实时渲染模糊效果。否则浮动窗口会无视底下的其他窗口内容，直接显示透视到桌面壁纸。看个人喜好选择禁用与否吧。
+window-rule {
+  match is-floating=true
+  background-effect {
+    xray false
+  }
+}
+
+/* Noctalia: blur everywhere without xray for a better look */
+layer-rule {
+  match namespace=r#"^noctalia-(background|launcher-overlay|dock)-.*$"#
+  background-effect {
+    xray false
+  }
+}
+
+// Set the overview wallpaper on the backdrop.
+layer-rule {
+  match namespace=r#"^noctalia-overview*"#
+  place-within-backdrop true
+}
+
+// Set the overview wallpaper on the backdrop.
+/-layer-rule {
+  match namespace=r#"^noctalia-toast*"#
+  background-effect {
+    xray false
+  }
+}

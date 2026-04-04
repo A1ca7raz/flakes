@@ -10,8 +10,8 @@
   ];
 
   services.displayManager = {
-    autoLogin.enable = true;
-    autoLogin.user = "nomad";
+    # autoLogin.enable = true;
+    # autoLogin.user = "nomad";
     sddm.enable = true;
     sddm.wayland.enable = true;
     sddm.settings = {

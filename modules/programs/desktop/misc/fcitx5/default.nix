@@ -35,9 +35,9 @@
     };
 
   homeModule = { ... }: {
-    systemd.user.services."app-org.fcitx.Fcitx5@autostart".Install = {
-      PartOf = "";
-      After = "";
-    };
+    # systemd.user.services."app-org.fcitx.Fcitx5@autostart".Install = {
+    #   PartOf = "";
+    #   After = "";
+    # };
   };
 }

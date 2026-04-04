@@ -7,13 +7,15 @@
       libnotify
       libqalculate
       lm_sensors
-      anki
+      # anki
       qalculate-qt
       # step-cli
       flameworkPackages.desktop-toolkit
 
       deskflow
-      openssl-ykcs
+      # openssl-ykcs
+#       openssl
+      smartmontools
     ];
   };
 
