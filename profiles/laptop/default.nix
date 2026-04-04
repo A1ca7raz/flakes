@@ -14,7 +14,7 @@
   ];
 
   modules = with self.modules; [
-    desktop.plasma
+    # desktop.plasma
 
     hardware.amdcpu
     hardware.amdgpu
@@ -24,6 +24,7 @@
     hardware.printing
     hardware.tpm
     hardware.xbox
+    hardware.power-management
 
     (programs.desktop.exclude [
       "entertainment.maa"
@@ -39,9 +40,12 @@
 
     (services.desktop.exclude [
       "webai"
+      "sunshine"
     ])
     system.kernel.xanmod
     system.security.secureboot
+    system.security.gnome-keyring
+    system.security.polkit
     # system.security.kwallet
   ];
 }

@@ -3,7 +3,10 @@
     programs.vscode = {
       enable = true;
       package = pkgs.vscodium.override {
-        commandLineArgs = "--extensions-dir ~/.local/share/VSCodium/extensions";
+        commandLineArgs = builtins.concatStringsSep " " [
+          "--extensions-dir ~/.local/share/VSCodium/extensions"
+          "--password-store=gnome-libsecret"
+        ];
       };
     };
 
