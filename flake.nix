@@ -49,12 +49,13 @@
       flake = {
         nixosModules = with inputs.pkgs.nixosModules; {
           colmena = colmena;
+          disko = disko;
           home = home-manager;
           impermanence = impermanence;
           lanzaboote = lanzaboote;
           nix-index = nix-index-database;
+          quadlet = quadlet;
           sops = sops;
-          disko = disko;
 
           nur = { ... }: {
             imports = [
