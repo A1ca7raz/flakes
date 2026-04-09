@@ -21,25 +21,26 @@
 
     nix.mirrors
 
-    system.network.netns
+    # system.network.netns
     system.bootloader.efi.systemd
     system.kernel.xanmod
 
-    services.common.postgresql
-    services.common.redis
-    services.common.caddy
-    services.common.knot
+    # services.common.postgresql
+    # services.common.redis
+    # services.common.caddy
+    # services.common.knot
 
     services.internal.heddns
-    services.internal.immich
-    services.internal.jellyfin
-    services.internal.torrent
-    services.internal.sharing
-    services.internal.moviepilot
+    # services.internal.immich
+    # services.internal.jellyfin
+    # services.internal.torrent
+    # services.internal.sharing
+    # services.internal.moviepilot
+    # services.internal.home-assistant
 
-    services.ai.sillytavern
+    # services.ai.sillytavern
 
-    services.external.step-ca
+    # services.external.step-ca
 
     {
       # PostgreSQL Tune
@@ -73,10 +74,10 @@
     }
 
     {
-      utils.netns.bridge = {
-        homelab.ipAddrs = variables.vnet.homelab;
-        global.ipAddrs = variables.vnet.global;
-      };
+      # utils.netns.bridge = {
+      #   homelab.ipAddrs = variables.vnet.homelab;
+      #   global.ipAddrs = variables.vnet.global;
+      # };
 
       services.immich.machine-learning.enable = false;  # Broken
 
