@@ -15,9 +15,9 @@
     source-han-sans
     source-han-serif
     wqy_microhei
-    twemoji-color-font
-  ] ++ (with nerd-fonts; [
-    caskaydia-mono
-    caskaydia-cove
-  ]);
+
+    nerd-fonts.caskaydia-mono
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.jetbrains-mono
+  ];
 }
