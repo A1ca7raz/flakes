@@ -37,25 +37,36 @@
           "useDistroLogo": true
         },
         {
-          "characterCount": 1,
+          "characterCount": 2,
           "colorizeIcons": false,
-          "emptyColor": "secondary",
+          "emptyColor": "tertiary",
           "enableScrollWheel": true,
           "focusedColor": "primary",
           "followFocusedScreen": false,
-          "fontWeight": "medium",
+          "fontWeight": "semibold",
           "groupedBorderOpacity": 1,
-          "hideUnoccupied": false,
-          "iconScale": 0.8,
+          "hideUnoccupied": true,
+          "iconScale": 1,
           "id": "Workspace",
           "labelMode": "name",
           "occupiedColor": "secondary",
           "pillSize": 0.7,
-          "showApplications": false,
+          "showApplications": true,
           "showApplicationsHover": false,
           "showBadge": true,
           "showLabelsOnlyWhenOccupied": true,
-          "unfocusedIconsOpacity": 1
+          "unfocusedIconsOpacity": 0.3
+        },
+        {
+          "colorizeIcons": false,
+          "hideMode": "hidden",
+          "id": "ActiveWindow",
+          "maxWidth": 500,
+          "scrollingMode": "hover",
+          "showIcon": true,
+          "showText": true,
+          "textColor": "none",
+          "useFixedWidth": false
         }
       ],
       "center": [
@@ -149,7 +160,7 @@
           "iconColor": "none",
           "id": "NotificationHistory",
           "showUnreadBadge": true,
-          "unreadBadgeColor": "error"
+          "unreadBadgeColor": "tertiary"
         },
         {
           "displayMode": "onhover",
@@ -290,6 +301,7 @@
     "name": "Marseille, France",
     "weatherEnabled": true,
     "weatherShowEffects": true,
+    "weatherTaliaMascotAlways": false,
     "useFahrenheit": false,
     "use12hourFormat": false,
     "showWeekNumberInCalendar": false,
@@ -298,7 +310,8 @@
     "analogClockInCalendar": true,
     "firstDayOfWeek": -1,
     "hideWeatherTimezone": false,
-    "hideWeatherCityName": false
+    "hideWeatherCityName": false,
+    "autoLocate": false
   },
   "calendar": {
     "cards": [
@@ -484,7 +497,7 @@
     "disableDesktopWidgets": true
   },
   "dock": {
-    "enabled": true,
+    "enabled": false,
     "position": "bottom",
     "displayMode": "auto_hide",
     "dockType": "attached",
@@ -658,7 +671,7 @@
   "colorSchemes": {
     "useWallpaperColors": true,
     "predefinedScheme": "Monochrome",
-    "darkMode": false,
+    "darkMode": true,
     "schedulingMode": "location",
     "manualSunrise": "06:30",
     "manualSunset": "18:30",

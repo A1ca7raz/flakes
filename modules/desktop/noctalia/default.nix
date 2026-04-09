@@ -17,5 +17,7 @@
     environment.persistence = lib.mkPersistDirsTree user [
       (lib.c "noctalia/plugins")
     ];
+
+    services.gnome.evolution-data-server.enable = true; # TODO: Persistence?
   };
 }
