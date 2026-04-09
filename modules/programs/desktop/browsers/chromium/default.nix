@@ -7,7 +7,7 @@
   homeModule = { pkgs, ... }: {
     programs.chromium = {
       enable = true;
-      package = pkgs.ungoogled-chromium;
+      package = pkgs.ungoogled-chromium-drm;
       nativeMessagingHosts = [
         pkgs.kdePackages.plasma-browser-integration
       ];
